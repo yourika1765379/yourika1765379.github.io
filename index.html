@@ -1,76 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Sans", "Yu Gothic", sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #f8fafc;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .container {
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
-      margin-bottom: 2rem;
-    }
-
-    .line {
-      width: 80px;
-      height: 3px;
-      margin: 0 auto;
-      background: #38bdf8;
-      border-radius: 999px;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-  <main class="container">
-    <h1>Coming Soon</h1>
-    <p>
-      このサイトは現在準備中です。<br>
-      また後ほどお越しください。
-    </p>
-    <div class="line"></div>
-  </main>
+<body class="home">
 
-  <footer>
-    © 2026 yourika
-  </footer>
+<div id="bg"></div>
+
+<header>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<h1>書架</h1>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Profile</a>
+<details class="library-menu">
+    <summary>Library</summary>
+    <div class="submenu">
+        <a href="9c7b/index.html">沙羅双樹の花<span>荼毘ホー</span></a>
+        <a href="#">すこしあかりて(閉鎖中)<span>常ホー、常闇夢</span></a>
+        <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
+    </div>
+</details>
+<a href="#">Contact</a>
+</nav>
+
+</header>
+
+<main>
+
+<div class="hero"></div>
+
+<section>
+
+<h2>━━ おしらせ ━━</h2>
+
+<div class="update">
+2026.07.15　サイト公開<br>
+2026.07.14　トップページ作成<br>
+2026.07.12　デザイン調整
+</div>
+
+</section>
+
+</main>
+
+<footer>
+© 2026 yourika
+</footer>
+
+<script src="js/common.js"></script>
 </body>
 </html>
