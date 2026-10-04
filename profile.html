@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile</title>
+
+<style>
+#bg{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background: #fff;
+    background-image:
+        linear-gradient(#e2e2e2 1px, transparent 1px),
+        linear-gradient(90deg, #d0d0d0 1px, transparent 1px);
+
+    background-size: 30px 30px;
+}
+
+body{
+    margin: 0;
+
+    font-family:
+        "Noto Serif JP",
+        "Hiragino Mincho ProN",
+        "Yu Mincho",
+        serif;
+
+    color:#333;
+}
+
+header{
+    width:min(900px,90%);
+    margin:40px auto 0;
+}
+
+h1{
+    margin:0;
+    font-size:34px;
+    font-weight:normal;
+    letter-spacing:.2em;
+}
+
+nav{
+    margin-top:18px;
+    display:flex;
+}
+
+nav > a,
+nav > details{
+    flex:1;
+    min-width:0;
+}
+
+nav a,
+nav summary{
+    display:block;
+
+    text-align:center;
+    padding:10px 0;
+
+    background:#333;
+    color:#fff;
+
+    text-decoration:none;
+
+    cursor:pointer;
+}
+
+summary{
+    list-style:none;
+}
+
+summary::-webkit-details-marker{
+    display:none;
+}
+
+.submenu{
+    position:absolute;
+    z-index:10;
+
+    width:220px;
+    max-width:80vw;
+}
+
+.submenu a{
+    background:#444;
+    border-top:1px solid #666;
+
+    padding:5px 12px;
+    font-size:0.85rem;
+    text-align:left;
+
+    white-space:normal;
+    overflow-wrap:break-word;
+}
+
+.submenu span{
+    display:block;
+    font-size:0.6rem;
+    opacity:0.8;
+}
+
+.submenu a:hover,
+nav > a:hover,
+summary:hover{
+    background:#555;
+}
+
+main{
+    width:min(900px,90%);
+    margin:50px auto;
+}
+
+section{
+    margin-top:70px;
+}
+
+h2{
+    text-align:center;
+    font-weight:normal;
+    white-space:pre;
+    margin-bottom:25px;
+}
+
+footer{
+    width:min(900px,90%);
+    margin:80px auto 30px;
+    font-size:.85em;
+    color:#888;
+    border-top:1px solid #ccc;
+    padding-top:15px;
+    text-align:center;
+}
+
+section p{
+    line-height:2;
+}
+
+.section-content{
+    width:fit-content;
+    margin:0 auto;
+}
+
+dl{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:12px 20px;
+    line-height:1.8;
+}
+
+dt{
+    color:#666;
+    text-align:right;
+    font-weight:600;
+}
+
+dd{
+    margin:0;
+}
+
+.update{
+    line-height:2;
+}
+
+.profile{
+    display:flex;
+    gap:30px;
+    align-items:center;
+}
+
+.icon {
+    width: 200px;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #bbb;
+    background: #eee;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-text{
+    line-height:2;
+}
+
+.profile-text h3{
+    margin:0 0 15px;
+    font-size:1.3rem;
+    font-weight:normal;
+}
+
+.sns{
+    display:flex;
+    gap:15px;
+    margin-top:10px;
+}
+
+.sns a{
+    display:block;
+}
+
+.sns img{
+    width: 25px;
+    height:25px;
+    object-fit:contain;
+    display:block;
+}
+
+@media(max-width:600px){
+
+    .profile{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div id="bg"></div>
+
+<header>
+
+<h1>書架</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="profile.html">Profile</a>
+<details class="library-menu">
+    <summary>Library</summary>
+    <div class="submenu">
+        <a href="9c7b/index.html">沙羅双樹の花<span>漢漢アー</span></a>
+        <a href="#">すこしあかりて(閉鎖中)<span>常ホー、常闇夢</span></a>
+        <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
+    </div>
+</details>
+<a href="#">Contact</a>
+</nav>
+
+</header>
+
+<main>
+
+<section>
+
+<h2>Profile</h2>
+
+<div class="profile section-content">
+
+        <div class="icon">
+            <img src="images/icon.jpg" alt="アイコン">
+        </div>
+
+        <div class="profile-text">
+
+            <p>
+                二次創作物を収める個人サイトです。
+            </p>
+
+            <p>
+                おそらくしばらく荼毘ホーさんメイン。<br>
+                よく見て、闇のオタクではないよ！
+            </p>
+
+            <div class="sns">
+                <a href="https://x.com/yourikachan_h?s=11&t=SRVlvKRgD_TvMlG4lq7cxw" target="_blank" rel="noopener">
+                    <img src="images/x-icon.png" alt="X">
+                </a>
+                <a href="https://www.pixiv.net/users/123261727" target="_blank" rel="noopener">
+                    <img src="images/pixiv-icon.png" alt="pixiv">
+                </a>
+            </div>
+        </div>
+    
+</div>
+
+</section>
+
+
+<section>
+    <h2>About</h2>
+
+    <div class="section-content">
+        <dl>
+            <dt>管理人</dt>
+            <dd>有理化ちゃん</dd>
+
+            <dt>開設</dt>
+            <dd>2026.12</dd>
+
+            <dt>趣味</dt>
+            <dd>読書、文章。たまーに絵も描きます。たまーに。</dd>
+        </dl>
+    </div>
+        
+</section>
+
+
+<section>
+    <h2>Update</h2>
+
+    <div class="update section-content">
+        <p>
+            2027.1.10<br>
+            SUPER COMIC CITY 関西 2027にサークル参加しました。新刊二冊でした。
+        </p>
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+© 2026 yourika
+</footer>
+
+<script>
+document.addEventListener("click", function(e) {
+    const menu = document.querySelector(".library-menu");
+
+    if (!menu.contains(e.target)) {
+        menu.removeAttribute("open");
+    }
+});
+</script>
+</body>
+</html>
