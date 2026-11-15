@@ -2,9 +2,29 @@
   box-sizing: border-box;
 }
 
+html.scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
+}
+
 @font-face {
   font-family: "タイムマシンわ号";
   src: url("../font/timemachine-wa.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KazukiReiwa Regular";
+  src: url("../font/KazukiReiwa - Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KazukiReiwa Light";
+  src: url("../font/KazukiReiwa - Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -184,8 +204,58 @@ dd {
   margin: 30px auto;
 }
 
-.book h2 {
+.book-return {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.btn-back-minimal {
+  display: inline-block;
+  padding: 8px 0;
+  border: none;
+  border-bottom: 1px solid #888;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+  gap: 0.5em;
+}
+
+.btn-back-minimal:hover {
+  opacity: 0.5;
+  transform: translateX(-4px);
+}
+
+.book h2:not(.book-title-kazuki):not(.book-subtitle) {
   font-family: "タイムマシンわ号", serif;
+}
+
+.book-title-standard {
+  font-family: inherit;
+}
+
+.book-title-kazuki {
+  font-family: "KazukiReiwa Regular", serif;
+  margin-bottom: 0.5rem;
+}
+
+.book-subtitle {
+  font-family: "KazukiReiwa Light", serif;
+  font-weight: 300;
+}
+
+.bookshelf .book-subtitle {
+  font-size: 0.7rem;
+  color: #888;
+  margin: 0;
+}
+
+.book .book-subtitle {
+  font-size: 1.2rem;
 }
 
 .book-layout {

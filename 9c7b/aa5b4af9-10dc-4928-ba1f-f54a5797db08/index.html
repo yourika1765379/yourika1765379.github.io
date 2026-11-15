@@ -2,75 +2,138 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Sans", "Yu Gothic", sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #f8fafc;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .container {
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
-      margin-bottom: 2rem;
-    }
-
-    .line {
-      width: 80px;
-      height: 3px;
-      margin: 0 auto;
-      background: #38bdf8;
-      border-radius: 999px;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
-  <main class="container">
-    <h1>Coming Soon</h1>
-    <p>
-      このサイトは現在準備中です。<br>
-      また後ほどお越しください。
-    </p>
-    <div class="line"></div>
+  <div id="bg"></div>
+
+  <header>
+    <h1>書架</h1>
+
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="../../profile.html">Profile</a>
+      <details class="library-menu">
+        <summary>Library</summary>
+        <div class="submenu">
+          <a href="../../9c7b/index.html">沙羅双樹の花<span>荼毘ホー</span></a>
+          <a href="#">すこしあかりて(閉鎖中)<span>常ホー、常闇夢</span></a>
+          <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
+        </div>
+      </details>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+  </header>
+
+
+  <main>
+    <section class="book">
+      <div class="book-layout">
+        <div class="slider">
+          <button class="arrow" id="prev" disabled>◀</button>
+          <div class="hyoushi">
+            <div class="slide-track" id="slideTrack">
+              <div class="slide"><img src="../image/Ophelia/hyoushi_B.jpg" alt="表紙"></div>
+              <div class="slide"><img src="../image/Ophelia/sample_1.jpg" alt="サンプル1"></div>
+              <div class="slide"><img src="../image/Ophelia/sample_2.jpg" alt="サンプル2"></div>
+              <div class="slide"><img src="../image/Ophelia/sample_3.jpg" alt="サンプル3"></div>
+            </div>
+          </div>
+          <button class="arrow" id="next">▶</button>
+          <p id="pageNumber">1 / 4</p>
+        </div>
+        <aside class="book-info" aria-label="作品紹介">
+          <h2 class="book-title-kazuki">無光の街のオフィーリア</h2>
+          <h2 class="book-subtitle">―あの日見た蒼炎、空と声の色―</h2>
+          <h3>あらすじ</h3>
+          <p class="book-synopsis">
+            ヴィラン連合に身を置く燈矢と、盲目の啓悟。<br>
+            ふたりは、関わるはずのなかった人生だった。<br>
+            一歩踏み込めば最後、自分の弱さごと、受け入れられてしまう。<br>
+            心地の良い幸せだった。<br>
+            それがモラトリアムだと、荼毘だけが知っていた。<br>
+            例えば、相手を想う優しさは、罪になり得るだろうか。
+          </p>
+          <div class="chapter-list">
+            <ul>
+              <li>第一章「秋風、変わりゆくもの」</li>
+              <li>第二章「青色の陽だまり」</li>
+              <li>第三章「冷たい熱」</li>
+              <li>第四章「色を読むこと」</li>
+            </ul>
+          </div>
+          <p>⚠️キャラクターの視覚障害設定があります。</p><br>
+          <h3>初版</h3>
+          <p class="book-synopsis">
+            2027/1/10
+          </p>
+        </aside>
+      </div>
+    </section>
+    <div class="book-return">
+      <a class="btn-back-minimal" href="../index.html">&nbsp;← BACK&nbsp;</a>
+    </div>
   </main>
+
+<script>
+const track = document.getElementById("slideTrack");
+const slides = track.querySelectorAll(".slide");
+
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+const pageNumber = document.getElementById("pageNumber");
+
+let currentIndex = 0;
+let isAnimating = false;
+
+function updateButtons() {
+  prevButton.disabled = currentIndex === 0;
+  nextButton.disabled = currentIndex === slides.length - 1;
+
+  pageNumber.textContent =
+    `${currentIndex + 1} / ${slides.length}`;
+}
+
+function moveSlide(direction) {
+  if (isAnimating) return;
+
+  const nextIndex = currentIndex + direction;
+
+  if (nextIndex < 0 || nextIndex >= slides.length) return;
+
+  isAnimating = true;
+  currentIndex = nextIndex;
+
+  const slideWidth = slides[0].getBoundingClientRect().width;
+
+  track.style.transform =
+    `translateX(-${slideWidth * currentIndex}px)`;
+
+  updateButtons();
+}
+
+track.addEventListener("transitionend", () => {
+  isAnimating = false;
+});
+
+prevButton.addEventListener("click", () => {
+  moveSlide(-1);
+});
+
+nextButton.addEventListener("click", () => {
+  moveSlide(1);
+});
+
+updateButtons();
+</script>
 
   <footer>
     © 2026 yourika
   </footer>
+
+  <script src="../../js/common.js"></script>
 </body>
 </html>
