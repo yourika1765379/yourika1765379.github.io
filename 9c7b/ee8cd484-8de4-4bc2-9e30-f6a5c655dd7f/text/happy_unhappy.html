@@ -1,0 +1,30 @@
+<style>
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  line-height: 1.8;
+}
+</style>
+　耳に灰が詰まっているかのように、なんにも聞こえなかった。目の感覚もついには焼け落ちて、そこにいるはずのものも見えなかった。それでもきっと、手の中にあるこれは、愛していた鳥のはずだった。
+　もう息もない。心臓は動かない。手を離した途端に、冷たくなってしまうのだろう。お前らは、いつもそう。俺の願いなんて、やっぱり、聞いてもくれない。
+　何かが、体を強く引いてくる。肩や腹のあたりが、強く押さえ込まれる。引き剥がされる。碌に入らない力を腕に込め、時が過ぎるのを待っていた。
+　吸い込んだ息は喉で詰まり、音もなく潰れる。あれもこれもそれも持っているくせに。今更、どうして否定してくれるんだ。
+　俺だって、一度くらい、素直な人間になってみたかった。
+<script>
+const text = Array.from(document.body.childNodes)
+  .filter((node) => node.nodeType === Node.TEXT_NODE)
+  .map((node) => node.textContent)
+  .join("")
+  .replace(/^\r?\n/, "")
+  .replace(/\r?\n+$/, "");
+
+parent.postMessage({ type: "modal-text", text }, "*");
+</script>

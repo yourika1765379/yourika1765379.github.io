@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "タイムマシンわ号";
+  src: url("../font/timemachine-wa.ttf") format("truetype");
+  font-display: swap;
+}
+
 body {
   margin: 0;
   font-family:
@@ -170,6 +176,337 @@ dd {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.book {
+  width: 100%;
+  margin: 30px auto;
+}
+
+.book h2 {
+  font-family: "タイムマシンわ号", serif;
+}
+
+.book-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: auto 300px auto;
+  grid-template-rows: 400px auto;
+  justify-content: start;
+  align-items: center;
+  column-gap: 15px;
+  width: max-content;
+  flex-shrink: 0;
+}
+
+.book-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-info h3 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.book-synopsis {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+#quiz {
+  margin: 2em 0 0 24px;
+  font-size: 0.75rem;
+}
+
+.btn-seal {
+  display: inline-block;
+  padding: 0.45em 1.1em;
+  border: 1px solid #292929;
+  background: #292929;
+  color: #f5f1e9;
+  font: inherit;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  vertical-align: middle;
+}
+
+#answer {
+  width: 16em;
+  padding: 0.4em 0.5em;
+  border: 1px solid #888;
+  font: inherit;
+  vertical-align: middle;
+}
+
+.btn-seal:hover {
+  background: transparent;
+  color: #292929;
+}
+
+.btn-seal:focus-visible {
+  outline: 2px solid #888;
+  outline-offset: 4px;
+}
+
+#result {
+  margin-left: 0;
+}
+
+.result-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  margin: 24px 0;
+}
+
+.result-images img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  transition: transform 0.2s ease;
+}
+
+.result-image-button {
+  position: relative;
+  display: block;
+  flex: 0 0 160px;
+  width: 160px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.result-image-button:hover img,
+.result-image-button:focus-visible img {
+  transform: scale(0.95);
+}
+
+.result-image-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.result-image-button:focus-visible {
+  outline: 2px solid #aaa;
+  outline-offset: 3px;
+}
+
+body.modal-open {
+  position: fixed;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.text-modal {
+  width: min(760px, calc(100vw - 32px));
+  max-width: 760px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.text-modal::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.text-modal-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.text-modal h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.text-modal-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.modal-close {
+  padding: 8px 16px;
+  border: 0;
+  background: transparent;
+  color: #555;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: transparent;
+  color: #333;
+}
+
+.modal-close:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-decoration-color: #aaa;
+}
+
+.modal-text-content {
+  width: 100%;
+  height: min(65vh, 560px);
+  padding: 1em 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  white-space: pre-wrap;
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  line-height: 1.8;
+}
+
+#modalText {
+  display: none;
+}
+
+@media (min-width: 601px) {
+  .text-modal {
+    width: min(600px, calc(100vw - 32px));
+    max-width: 600px;
+    padding: 18px;
+  }
+
+  .modal-text-content {
+    height: auto;
+    max-height: min(60vh, 420px);
+  }
+}
+
+/* 本の詳細ページ専用 */
+.chapter-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.chapter-list li {
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+.chapter-list li::before {
+  content: "§";
+  display: inline-block;
+  margin-right: 0.8em;
+  color: #999;
+  font-size: 0.9em;
+}
+
+.hyoushi {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.slide-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+.slide {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex: 0 0 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid #ccc;
+}
+
+.arrow {
+  border: none;
+  background: none;
+  font-size: 25px;
+  cursor: pointer;
+  color: #555;
+}
+
+.arrow:hover {
+  color: #999;
+}
+
+.arrow:disabled {
+  color: #ccc;
+  cursor: default;
+}
+
+#pageNumber {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin: 10px 0 0;
+}
+
+/* スマホ */
+@media (max-width: 600px) {
+  .book-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .book-info {
+    width: 100%;
+  }
+
+  .slider {
+    grid-template-columns: auto 65vw auto;
+    grid-template-rows: 350px auto;
+    justify-content: center;
+    column-gap: 8px;
+  }
+
+  .hyoushi {
+    height: 100%;
+  }
+
+  .arrow {
+    font-size: 18px;
+  }
+
+  .result-images {
+    max-width: 336px;
+    justify-content: center;
+    margin: 24px auto;
+  }
+
 }
 
 .profile-text {

@@ -1,0 +1,30 @@
+<style>
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  line-height: 1.8;
+}
+</style>
+　本当は、体内を巡る酩酊感が、怖くてたまらない。ずっと、すべてが夢だったのかもしれない。目が覚めたら、ひとりかもしれない。俺は何も変われていないのかもしれない。
+　怖くてたまらないから、信じている。手が離されないこと。この温もりが俺だけのものであること。きっと認めないけれど、きっと普通ではなかったけれど、これはたぶん、彼なりの優しさでもあった。
+　古いステンドグラスが、太陽を浴びて美しく光る。その光を浴びた蒼い瞳もまた、綺麗だった。
+「ね、だび」
+綺麗な目だった。隣にいてくれた炎、暖かかった春の空。俺の大好きな色だった。もしも、次に起きたら、伝えてみたい。なんてことのない夢を見ながら、深く息を吐いた。
+<script>
+const text = Array.from(document.body.childNodes)
+  .filter((node) => node.nodeType === Node.TEXT_NODE)
+  .map((node) => node.textContent)
+  .join("")
+  .replace(/^\r?\n/, "")
+  .replace(/\r?\n+$/, "");
+
+parent.postMessage({ type: "modal-text", text }, "*");
+</script>

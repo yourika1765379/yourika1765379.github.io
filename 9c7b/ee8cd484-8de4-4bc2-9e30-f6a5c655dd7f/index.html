@@ -2,75 +2,259 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Sans", "Yu Gothic", sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #f8fafc;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .container {
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
-      margin-bottom: 2rem;
-    }
-
-    .line {
-      width: 80px;
-      height: 3px;
-      margin: 0 auto;
-      background: #38bdf8;
-      border-radius: 999px;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
-  <main class="container">
-    <h1>Coming Soon</h1>
-    <p>
-      このサイトは現在準備中です。<br>
-      また後ほどお越しください。
-    </p>
-    <div class="line"></div>
+  <div id="bg"></div>
+
+  <header>
+    <h1>書架</h1>
+
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="../../profile.html">Profile</a>
+      <details class="library-menu">
+        <summary>Library</summary>
+        <div class="submenu">
+          <a href="../../9c7b/index.html">沙羅双樹の花<span>荼毘ホー</span></a>
+          <a href="#">すこしあかりて(閉鎖中)<span>常ホー、常闇夢</span></a>
+          <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
+        </div>
+      </details>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+  </header>
+
+
+  <main>
+    <section class="book">
+      <div class="book-layout">
+        <div class="slider">
+          <button class="arrow" id="prev">◀</button>
+          <div class="hyoushi">
+            <div class="slide-track" id="slideTrack">
+              <div class="slide"><img src="../image/Ashes/hyoushi_A.jpg" alt="表紙"></div>
+              <div class="slide"><img src="../image/Ashes/sample_1.jpg" alt="サンプル1"></div>
+              <div class="slide"><img src="../image/Ashes/sample_2.jpg" alt="サンプル2"></div>
+              <div class="slide"><img src="../image/Ashes/sample_3.jpg" alt="サンプル3"></div>
+            </div>
+          </div>
+          <button class="arrow" id="next">▶</button>
+          <p id="pageNumber">1 / 4</p>
+        </div>
+        <aside class="book-info" aria-label="作品紹介">
+          <h2>遺灰と黙示録</h2>
+          <h3>あらすじ</h3>
+          <p class="book-synopsis">
+            ひとりの女の死、飛べない鳥、尽きない欲望。<br>
+            可哀そうは、可愛いらしい。<br>
+            荼毘は連合を裏切り、ホークスは社会を捨て、互いに体温を分け合い、すべてから逃げるように生きる。<br>
+            その先に幸福が無くとも、不幸も無いんだと信じて生きる。<br>
+            ふたりは同じ場所に辿り着くまで、何を願うのか。
+          </p>
+          <div class="chapter-list">
+            <ul>
+              <li>第一章「終末」</li>
+              <li>第二章「薄明」</li>
+              <li>第三章「遺言」</li>
+              <li>第四章「純真」<span>※R18、pixiv公開予定なし</span></li>
+              <li>第五章「恍惚」</li>
+            </ul>
+          </div>
+          <p>⚠️成人向け・死ネタ・精神的不調・独自解釈を含みます。</p><br>
+          <h3>初版</h3>
+          <p class="book-synopsis">
+            2027/1/10
+          </p>
+        </aside>
+      </div>
+      <div id="quiz">
+        <form id="quizForm">
+          <span>Q. 荼毘が最後に望んだ暮らしを象徴するものは何か。<br>
+          &nbsp;&nbsp;本文中から10文字で抜き出してください。</span><br>
+
+          <span id="hint"></span><br>
+
+          <input id="answer">
+          <button class="btn-seal" type="submit">UNLOCK</button>
+        </form>
+      </div>
+
+      <div id="result" hidden>
+        <div class="result-images">
+          <button class="result-image-button" type="button" data-text="text/not_afraid_to.html">
+            <img src="../image/Ashes/postcard_A-1.jpg" alt="not afraid to.">
+          </button>
+          <button class="result-image-button" type="button" data-text="text/happy_unhappy.html">
+            <img src="../image/Ashes/postcard_B-2.jpg" alt="happy unhappy">
+          </button>
+        </div>
+      </div>
+
+      <dialog id="textModal" class="text-modal" aria-labelledby="modalTitle">
+        <div class="text-modal-header">
+          <h3 id="modalTitle"></h3>
+        </div>
+        <div id="modalTextContent" class="modal-text-content" role="document" tabindex="0" aria-label="作品テキスト">読み込み中…</div>
+        <iframe id="modalText" title="作品テキスト" sandbox="allow-scripts" hidden></iframe>
+        <div class="text-modal-footer">
+          <button id="closeTextModal" class="modal-close" type="button" autofocus>close</button>
+        </div>
+      </dialog>
+    </section>
   </main>
+
+<script>
+const track = document.getElementById("slideTrack");
+const slides = track.querySelectorAll(".slide");
+
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+const pageNumber = document.getElementById("pageNumber");
+const textModal = document.getElementById("textModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalTextContent = document.getElementById("modalTextContent");
+const quizForm = document.getElementById("quizForm");
+
+let currentIndex = 0;
+let isAnimating = false;
+let pageScrollY = 0;
+
+function updateButtons() {
+  prevButton.disabled = currentIndex === 0;
+  nextButton.disabled = currentIndex === slides.length - 1;
+
+  pageNumber.textContent =
+    `${currentIndex + 1} / ${slides.length}`;
+}
+
+function moveSlide(direction) {
+  if (isAnimating) return;
+
+  const nextIndex = currentIndex + direction;
+
+  if (nextIndex < 0 || nextIndex >= slides.length) return;
+
+  isAnimating = true;
+  currentIndex = nextIndex;
+
+  const slideWidth = slides[0].getBoundingClientRect().width;
+
+  track.style.transform =
+    `translateX(-${slideWidth * currentIndex}px)`;
+
+  updateButtons();
+}
+
+track.addEventListener("transitionend", () => {
+  isAnimating = false;
+});
+
+prevButton.addEventListener("click", () => {
+  moveSlide(-1);
+});
+
+nextButton.addEventListener("click", () => {
+  moveSlide(1);
+});
+
+document.querySelectorAll(".result-image-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const textPath = button.dataset.text;
+    if (!textPath) {
+      console.error("モーダルのテキストファイルが指定されていません。");
+      return;
+    }
+
+    modalTitle.textContent = button.querySelector("img").alt;
+    modalTextContent.textContent = "読み込み中…";
+    modalText.src = textPath;
+    pageScrollY = window.scrollY;
+    document.body.style.top = `-${pageScrollY}px`;
+    document.body.classList.add("modal-open");
+    textModal.showModal();
+  });
+});
+
+window.addEventListener("message", (event) => {
+  if (event.source !== modalText.contentWindow) return;
+
+  const message = event.data;
+  if (!message || message.type !== "modal-text" || typeof message.text !== "string") return;
+
+  modalTextContent.textContent = message.text;
+});
+
+document.getElementById("closeTextModal").addEventListener("click", () => {
+  textModal.close();
+});
+
+textModal.addEventListener("click", (event) => {
+  if (event.target === textModal) {
+    textModal.close();
+  }
+});
+
+textModal.addEventListener("close", () => {
+  document.body.classList.remove("modal-open");
+  document.body.style.top = "";
+  window.scrollTo(0, pageScrollY);
+});
+
+textModal.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    event.preventDefault();
+    textModal.close();
+  }
+});
+
+updateButtons();
+
+quizForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  checkAnswer();
+});
+
+function checkAnswer() {
+    const answer = document.getElementById("answer").value.trim();
+
+    if (answer === "インスタントの味噌汁") {
+        const quiz = document.getElementById("quiz");
+        const result = document.getElementById("result");
+
+        quiz.classList.add("hide");
+
+        setTimeout(() => {
+            quiz.hidden = true;
+
+            result.hidden = false;
+
+            // 次の描画タイミングでフェードイン
+            requestAnimationFrame(() => {
+                result.classList.add("show");
+            });
+
+        }, 400);
+
+    } else {
+        const hint = document.getElementById("hint");
+
+        hint.textContent =
+            "ヒント：○○○○○○○○○○なんかが二杯あれば";
+
+        hint.classList.add("show");
+    }
+}
+</script>
 
   <footer>
     © 2026 yourika
   </footer>
+
+  <script src="../js/common.js"></script>
 </body>
 </html>
