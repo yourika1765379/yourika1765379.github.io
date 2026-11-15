@@ -27,6 +27,7 @@ body {
     linear-gradient(#e2e2e2 1px, transparent 1px),
     linear-gradient(90deg, #d0d0d0 1px, transparent 1px);
   background-size: 30px 30px;
+  background-color: #f9f9f9;
 }
 
 header {
