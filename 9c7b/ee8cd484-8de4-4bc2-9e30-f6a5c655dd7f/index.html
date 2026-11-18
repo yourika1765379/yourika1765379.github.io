@@ -254,6 +254,30 @@ function checkAnswer() {
 }
 </script>
 
+  <img
+    id="little-dabiho-walk"
+    src="../image/little-dabiho-walk.GIF"
+    alt=""
+    aria-hidden="true"
+    style="position: absolute; left: 0; top: 0; width: 88px; max-width: 20vw; max-height: 16vh; object-fit: contain; z-index: 999; pointer-events: none; visibility: hidden;"
+  >
+  <script>
+    const littleDabiho = document.getElementById("little-dabiho-walk");
+    function placeLittleDabiho() {
+      const bounds = littleDabiho.getBoundingClientRect();
+      const maxLeft = Math.max(0, window.innerWidth - bounds.width);
+      const maxTop = Math.max(0, window.innerHeight - bounds.height);
+      littleDabiho.style.left = `${window.scrollX + Math.random() * maxLeft}px`;
+      littleDabiho.style.top = `${window.scrollY + Math.random() * maxTop}px`;
+      littleDabiho.style.visibility = "visible";
+    }
+    if (littleDabiho.complete) {
+      placeLittleDabiho();
+    } else {
+      littleDabiho.addEventListener("load", placeLittleDabiho, { once: true });
+    }
+  </script>
+
   <footer>
     © 2026 yourika
   </footer>
