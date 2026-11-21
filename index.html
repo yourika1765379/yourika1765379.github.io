@@ -29,7 +29,13 @@
   </header>
 
   <main>
-    <div class="hero"></div>
+    <div class="hero">
+      <div class="hero-image" aria-hidden="true"></div>
+      <blockquote class="hero-quote" hidden>
+        <p id="heroQuote">可哀そうは、可愛いらしい。</p>
+        <cite id="heroQuoteSource">遺灰と黙示録</cite>
+      </blockquote>
+    </div>
 
     <section>
       <div class="section-content">
@@ -53,5 +59,36 @@
   </footer>
 
   <script src="js/common.js"></script>
+  <script>
+    const heroQuotes = [
+      {
+        text: "きっと、今日の広い朝は、あれのためにある。",
+        source: "遺灰と黙示録"
+      },
+      {
+        text: "深いため息と、火の爆ぜる小さな音は同時だった。\n何もない視界に光が灯る。",
+        source: "無光の街のオフィーリア\n—あの日見た蒼炎、空と声の色—"
+      }
+    ];
+    const heroQuote = heroQuotes[Math.floor(Math.random() * heroQuotes.length)];
+    const heroQuoteElement = document.querySelector(".hero-quote");
+    const heroQuoteText = document.getElementById("heroQuote");
+    const heroQuoteSource = document.getElementById("heroQuoteSource");
+
+    if (
+      heroQuoteElement &&
+      heroQuoteText &&
+      heroQuoteSource &&
+      heroQuote &&
+      typeof heroQuote.text === "string" &&
+      heroQuote.text.trim() &&
+      typeof heroQuote.source === "string" &&
+      heroQuote.source.trim()
+    ) {
+      heroQuoteText.textContent = heroQuote.text;
+      heroQuoteSource.textContent = heroQuote.source;
+      heroQuoteElement.hidden = false;
+    }
+  </script>
 </body>
 </html>

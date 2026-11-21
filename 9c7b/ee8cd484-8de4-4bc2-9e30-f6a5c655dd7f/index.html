@@ -88,7 +88,12 @@
           <button class="result-image-button" type="button" data-text="text/not_afraid_to.html">
             <img src="../image/Ashes/postcard_A-1.jpg" alt="not afraid to.">
           </button>
-          <button class="result-image-button" type="button" data-text="text/happy_unhappy.html">
+          <button
+            class="result-image-button"
+            type="button"
+            data-text="text/happy_unhappy.html"
+            data-strikethrough="unhappy"
+          >
             <img src="../image/Ashes/postcard_B-2.jpg" alt="happy unhappy">
           </button>
         </div>
@@ -173,7 +178,22 @@ document.querySelectorAll(".result-image-button").forEach((button) => {
       return;
     }
 
-    modalTitle.textContent = button.querySelector("img").alt;
+    const title = button.querySelector("img").alt;
+    const strikethrough = button.dataset.strikethrough;
+    const strikethroughIndex = strikethrough ? title.indexOf(strikethrough) : -1;
+
+    if (strikethroughIndex === -1) {
+      modalTitle.textContent = title;
+    } else {
+      const deletedText = document.createElement("del");
+      deletedText.textContent = strikethrough;
+      modalTitle.replaceChildren(
+        document.createTextNode(title.slice(0, strikethroughIndex)),
+        deletedText,
+        document.createTextNode(title.slice(strikethroughIndex + strikethrough.length))
+      );
+    }
+
     modalTextContent.textContent = "読み込み中…";
     modalText.src = textPath;
     pageScrollY = window.scrollY;

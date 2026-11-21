@@ -88,7 +88,8 @@
 }
 
 /* ホバー */
-.book-item:hover .book-cover {
+.book-item:hover .book-cover,
+.book-item:focus-visible .book-cover {
   transform: translateY(-4px);
   box-shadow: 3px 6px 9px #0002;
 }

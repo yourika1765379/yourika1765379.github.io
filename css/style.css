@@ -140,8 +140,51 @@ main {
 
 .hero {
   width: 100%;
+}
+
+.hero-image {
+  width: 100%;
   aspect-ratio: 3 / 1;
   background: url("../images/home-B.jpg") center/cover no-repeat;
+}
+
+.hero-quote {
+  position: relative;
+  width: fit-content;
+  max-width: min(500px, 60%);
+  margin: -30px -21px 0 auto;
+  padding: 2.2em 1.8em 1.3em 2.8em;
+  color: #333;
+  background-color: #e5f1f299;
+  font-size: 0.85rem;
+}
+
+.hero-quote::before {
+  display: inline-block;
+  position: absolute;
+  top: 0.6em;
+  left: 1.1em;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z' fill='%232aa8ba'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  content: "";
+}
+
+.hero-quote p {
+  margin-top: 0;
+  font-family: "アプリ明朝", serif;
+  font-size: 1.1em;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.hero-quote cite {
+  display: block;
+  color: #737373;
+  font-size: 0.7em;
+  font-style: normal;
+  text-align: right;
 }
 
 section {
@@ -322,8 +365,14 @@ dd {
   width: 16em;
   padding: 0.4em 0.5em;
   border: 1px solid #888;
+  background: #f9f9f980;
+  border-radius: 1px;
   font: inherit;
   vertical-align: middle;
+}
+
+#answer:focus {
+  outline: 1.5px solid #2aa8ba;
 }
 
 .btn-seal:hover {
@@ -355,7 +404,10 @@ dd {
   width: 100%;
   height: auto;
   border: 1px solid #ccc;
-  transition: transform 0.2s ease;
+  box-shadow: 2px 3px 5px #0001;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .result-image-button {
@@ -372,7 +424,8 @@ dd {
 
 .result-image-button:hover img,
 .result-image-button:focus-visible img {
-  transform: scale(0.95);
+  transform: translateY(-4px);
+  box-shadow: 3px 6px 9px #0001;
 }
 
 .result-image-button:focus:not(:focus-visible) {
@@ -420,6 +473,10 @@ body.modal-open {
 .text-modal h3 {
   margin: 0;
   font-weight: 600;
+}
+
+.text-modal h3 del {
+  text-decoration-style: double;
 }
 
 .text-modal-footer {
@@ -476,14 +533,15 @@ body.modal-open {
   }
 }
 
-/* 本の詳細ページ専用 */
-.chapter-list ul {
+.chapter-list ul,
+.favorite-list ul {
   list-style: none;
   padding: 0;
   margin: 1.5rem 0;
 }
 
-.chapter-list li {
+.chapter-list li,
+.favorite-list li {
   font-size: 0.9rem;
   line-height: 2;
 }
@@ -493,6 +551,13 @@ body.modal-open {
   display: inline-block;
   margin-right: 0.8em;
   color: #999;
+  font-size: 0.9em;
+}
+
+.favorite-list li::before {
+  content: "❤";
+  margin-right: 0.8em;
+  color: #3bb9cb;
   font-size: 0.9em;
 }
 
@@ -626,6 +691,16 @@ footer {
 }
 
 @media (max-width: 600px) {
+  .hero-image {
+    aspect-ratio: 2 / 1;
+  }
+
+  .hero-quote {
+    margin-right: -10px;
+    max-width: 78%;
+    font-size: 0.7rem;
+  }
+
   .profile {
     flex-direction: column;
     text-align: center;
