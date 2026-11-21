@@ -9,9 +9,6 @@ async function include(id, file) {
 }
 
 async function init() {
-    await include("header", "includes/header.html");
-    await include("footer", "includes/footer.html");
-
     document.addEventListener("click", function (e) {
         const menu = document.querySelector(".library-menu");
 
