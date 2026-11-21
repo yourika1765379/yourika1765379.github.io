@@ -9,6 +9,11 @@ async function include(id, file) {
 }
 
 async function init() {
+    const siteTitle = document.querySelector("header h1");
+    if (siteTitle && Math.random() < 0.0001) {
+        siteTitle.textContent = "root書架/書架";
+    }
+
     document.addEventListener("click", function (e) {
         const menu = document.querySelector(".library-menu");
 

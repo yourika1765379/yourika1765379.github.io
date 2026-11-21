@@ -1,0 +1,202 @@
+#contactForm {
+  width: min(600px, 100%);
+  margin: 0 auto;
+  text-align: left;
+}
+
+#contactForm section {
+  margin-top: 30px;
+}
+
+#contactForm section + section {
+  margin-top: 70px;
+}
+
+#contactForm section h3:nth-of-type(2) {
+  margin-top: 70px;
+}
+
+#contactForm label {
+  display: block;
+  margin: 8px 0;
+}
+
+#contactForm > section:first-of-type > label,
+#contactForm .other-option {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin: 0;
+}
+
+#contactForm > section:first-of-type > label {
+  gap: 0;
+  width: fit-content;
+}
+
+#contactForm .other-option label {
+  flex: 0 0 auto;
+  width: fit-content;
+  margin: 0;
+}
+
+#contactForm .other-option {
+  gap: 12px;
+}
+
+#contactForm .other-option input[type="text"] {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  height: 1.5em;
+  margin: 0;
+  padding: 2px 0;
+  border: 0;
+  border-bottom: 1px solid #888;
+  background: transparent;
+}
+
+#contactForm .other-option input[type="text"]:focus {
+  border-bottom: 1.5px solid #2aa8ba;
+  outline: none;
+}
+
+#contactForm input[type="radio"],
+#contactForm input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #2aa8ba;
+}
+
+#contactForm select,
+#contactForm input[type="text"],
+#contactForm textarea {
+  width: 100%;
+  max-width: 100%;
+  margin: 8px 0;
+  font: inherit;
+}
+
+#contactForm input[type="text"],
+#contactForm textarea {
+  padding: 8px;
+}
+
+.selectbox-5 {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.selectbox-5::after {
+  position: absolute;
+  right: 15px;
+  width: 10px;
+  height: 7px;
+  background-color: #646464;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  content: "";
+  pointer-events: none;
+}
+
+#contactForm .selectbox-5 select {
+  appearance: none;
+  min-width: 230px;
+  width: max-content;
+  max-width: 100%;
+  height: 2.8em;
+  margin-top: 0;
+  padding: 0.4em calc(0.8em + 30px) 0.4em 0.8em;
+  border: none;
+  border-bottom: 2px solid #2aa8ba;
+  background-color: transparent;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+#contactForm .selectbox-5 select:focus {
+  outline: none;
+}
+
+#contactForm .selectbox-5 option {
+  background-color: #f9f9f9;
+  color: #444;
+}
+
+#contactForm textarea {
+  min-height: 120px;
+  resize: vertical;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  background: #edf3f3;
+  color: #333;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+#contactForm textarea:focus {
+  outline: 1.5px solid #2aa8ba;
+}
+
+#pageOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+
+#pageOptions label {
+  display: flex;
+  align-items: center;
+}
+
+#contactForm button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 0.45em 1.1em;
+  border: 1px solid #292929;
+  background: #292929;
+  color: #f5f1e9;
+  font: inherit;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+#contactForm button:not(:disabled):hover {
+  background: transparent;
+  color: #292929;
+}
+
+#contactForm button:focus-visible {
+  outline: 2px solid #888;
+  outline-offset: 4px;
+}
+
+#contactForm button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#status {
+  width: min(600px, 100%);
+  margin: 16px auto 0;
+  text-align: center;
+}
+
+#status.error {
+  color: #c04a4a;
+}
+
+@media (max-width: 600px) {
+  .selectbox-5 {
+    width: 100%;
+  }
+
+  #contactForm .selectbox-5 select {
+    width: 100%;
+    min-width: 0;
+  }
+}

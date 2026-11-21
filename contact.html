@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/contact.css">
 </head>
 
 <body>
   <div id="bg"></div>
 
   <header>
-    <h1>書架</h1>
+    <h1>1/root書架</h1>
 
     <nav>
       <a href="index.html">Home</a>
@@ -34,19 +35,71 @@
 
       <div class="section-content">
         <p>
-          本の感想、サイトの不具合報告などはこちらから。<br>
-          Googleフォームにて受け付けています。匿名です。
+          本の感想、サイトの不具合報告などはこちらから。
         </p>
-
-        <p>
-          <a class="link-design-04" href="https://docs.google.com/forms/d/e/1FAIpQLSfUG9axyWGu8VPHTq721mz_Dp3BuSJLv6QdBVrn4SIOlrFo1g/viewform?usp=sharing&ouid=102336751026048896330"
-          target="_blank" rel="noopener">
-            <span class="link-design-04__text">
-              ご連絡フォーム
-            </span>
-          </a>
+        <p style="text-align: center;">
+          ✦ ✧ ✦
         </p>
       </div>
+
+      <form id="contactForm">
+        <!-- 質問1 -->
+        <section>
+          <h3>お問い合わせ内容</h3>
+          <label>
+            <input type="radio" name="category"
+            value="作品についての感想・誤字報告" required>
+            作品についての感想・誤字報告
+          </label>
+          <label>
+            <input type="radio" name="category"
+            value="サイトの不具合・バグ報告">
+            サイトの不具合・バグ報告
+          </label>
+          <div class="other-option">
+            <label>
+              <input type="radio" name="category"
+              value="その他">
+              その他：
+            </label>
+            <input type="text" id="otherText" name="otherText" disabled>
+          </div>
+        </section>
+
+        <!-- 質問2・3 -->
+        <section id="bookSection" hidden>
+          <h3>本を選択</h3>
+          <div class="selectbox-5">
+            <select id="bookSelect" name="book">
+              <option value="" selected disabled>タイトルを選択してください</option>
+            </select>
+          </div>
+
+          <h3>感想・誤字報告</h3>
+          <textarea id="bookMessage" name="bookMessage"></textarea>
+        </section>
+
+        <!-- 質問4・5 -->
+        <section id="bugSection" hidden>
+          <h3>該当ページ選択</h3>
+          <div id="pageOptions"></div>
+
+          <h3>不具合の内容</h3>
+          <textarea id="bugMessage" name="bugMessage"></textarea>
+        </section>
+
+        <!-- 質問6 -->
+        <section id="otherDetail" hidden>
+          <h3>その他</h3>
+          <textarea id="otherDetailMessage" name="otherDetailMessage" disabled></textarea>
+        </section>
+
+        <button id="submitButton" class="btn-seal" type="submit" hidden disabled>送信</button>
+      </form>
+      <p id="status" aria-live="polite"></p>
+
+      <!-- Googleフォーム送信用 -->
+      <iframe name="googleFormFrame" id="googleFormFrame" hidden></iframe>
     </section>
   </main>
 
@@ -55,5 +108,6 @@
   </footer>
 
   <script src="js/common.js"></script>
+  <script src="js/form.js"></script>
 </body>
 </html>

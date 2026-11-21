@@ -13,6 +13,12 @@ html.scrollbar-gutter-stable {
 }
 
 @font-face {
+  font-family: "アプリ明朝";
+  src: url("../font/アプリ明朝.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "KazukiReiwa Regular";
   src: url("../font/KazukiReiwa - Regular.ttf") format("truetype");
   font-weight: 400;
@@ -57,6 +63,7 @@ header {
 
 h1 {
   margin: 0;
+  font-family: "アプリ明朝", serif;
   font-size: 34px;
   font-weight: normal;
   letter-spacing: 0.2em;
