@@ -30,12 +30,25 @@
 
   <main>
     <div class="hero">
-      <div class="hero-image" aria-hidden="true"></div>
+      <div class="hero-image">
+        <button class="hero-secret-trigger" type="button" aria-label="隠しメッセージを開く"></button>
+      </div>
       <blockquote class="hero-quote" hidden>
         <p id="heroQuote">可哀そうは、可愛いらしい。</p>
         <cite id="heroQuoteSource">遺灰と黙示録</cite>
       </blockquote>
     </div>
+
+    <dialog id="secretModal" class="text-modal" aria-labelledby="secretModalTitle">
+      <div class="text-modal-header">
+        <h3 id="secretModalTitle">書きたいなぁとか思ってるやつ</h3>
+      </div>
+      <div id="secretModalContent" class="modal-text-content" role="document" tabindex="0" aria-label="隠しメッセージ">読み込み中…</div>
+      <iframe id="secretModalText" title="隠しメッセージ" sandbox="allow-scripts" hidden></iframe>
+      <div class="text-modal-footer">
+        <button id="closeSecretModal" class="modal-close" type="button">close</button>
+      </div>
+    </dialog>
 
     <section>
       <div class="section-content">
@@ -60,6 +73,16 @@
 
   <script src="js/common.js"></script>
   <script>
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") {
+        document.body.classList.add("keyboard-navigation");
+      }
+    });
+
+    document.addEventListener("pointerdown", () => {
+      document.body.classList.remove("keyboard-navigation");
+    });
+
     const heroQuotes = [
       {
         text: "きっと、今日の広い朝は、あれのためにある。",
@@ -89,6 +112,92 @@
       heroQuoteSource.textContent = heroQuote.source;
       heroQuoteElement.hidden = false;
     }
+
+    const secretTrigger = document.querySelector(".hero-secret-trigger");
+    const secretModal = document.getElementById("secretModal");
+    const secretModalText = document.getElementById("secretModalText");
+    const secretModalContent = document.getElementById("secretModalContent");
+    let pageScrollY = 0;
+
+    secretTrigger.addEventListener("click", () => {
+      secretModalContent.textContent = "読み込み中…";
+      secretModalText.src = "text/hidden-message.html";
+      pageScrollY = window.scrollY;
+      document.body.style.top = `-${pageScrollY}px`;
+      document.body.classList.add("modal-open");
+      secretModal.showModal();
+    });
+
+    window.addEventListener("message", (event) => {
+      if (event.source !== secretModalText.contentWindow) return;
+
+      const message = event.data;
+      if (!message || message.type !== "modal-groups") return;
+      if (typeof message.intro !== "string" ||
+        !Array.isArray(message.groups) ||
+        !message.groups.every((group) =>
+        group &&
+        typeof group.label === "string" &&
+        group.label.trim() &&
+        Array.isArray(group.entries) &&
+        group.entries.length > 0 &&
+        group.entries.every((entry) =>
+          entry &&
+          typeof entry.label === "string" &&
+          typeof entry.value === "string"
+        )
+      )) {
+        console.error("隠しメッセージのリストデータが不正です。");
+        secretModalContent.textContent = "メッセージを読み込めませんでした。";
+        return;
+      }
+
+      const content = document.createDocumentFragment();
+      if (message.intro) {
+        const intro = document.createElement("p");
+        intro.className = "secret-info-intro";
+        intro.textContent = message.intro;
+        content.appendChild(intro);
+      }
+
+      message.groups.forEach(({ label, entries }) => {
+        const section = document.createElement("section");
+        section.className = "secret-info-group";
+        const heading = document.createElement("h4");
+        const list = document.createElement("dl");
+        list.className = "secret-info-list";
+        heading.textContent = label;
+
+        entries.forEach(({ label: term, value }) => {
+          const termElement = document.createElement("dt");
+          const descriptionElement = document.createElement("dd");
+          termElement.textContent = term;
+          descriptionElement.textContent = value;
+          list.append(termElement, descriptionElement);
+        });
+
+        section.append(heading, list);
+        content.appendChild(section);
+      });
+
+      secretModalContent.replaceChildren(content);
+    });
+
+    document.getElementById("closeSecretModal").addEventListener("click", () => {
+      secretModal.close();
+    });
+
+    secretModal.addEventListener("click", (event) => {
+      if (event.target === secretModal) {
+        secretModal.close();
+      }
+    });
+
+    secretModal.addEventListener("close", () => {
+      document.body.classList.remove("modal-open");
+      document.body.style.top = "";
+      window.scrollTo(0, pageScrollY);
+    });
   </script>
 </body>
 </html>

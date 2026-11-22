@@ -19,6 +19,12 @@ html.scrollbar-gutter-stable {
 }
 
 @font-face {
+  font-family: "赤薔薇シンデレラ";
+  src: url("../font/akabara-cinderella.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "KazukiReiwa Regular";
   src: url("../font/KazukiReiwa - Regular.ttf") format("truetype");
   font-weight: 400;
@@ -57,8 +63,24 @@ body {
 }
 
 header {
+  position: relative;
   width: min(900px, 90%);
   margin: 40px auto 0;
+}
+
+.header-title-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.header-month {
+  margin: 0 0 -14px auto;
+  font-family: "アプリ明朝", serif;
+  font-size: 0.9rem;
+  line-height: 34px;
+  white-space: nowrap;
+  color: #777;
 }
 
 h1 {
@@ -67,6 +89,7 @@ h1 {
   font-size: 34px;
   font-weight: normal;
   letter-spacing: 0.2em;
+  line-height: 34px;
 }
 
 nav {
@@ -143,9 +166,29 @@ main {
 }
 
 .hero-image {
+  position: relative;
   width: 100%;
   aspect-ratio: 3 / 1;
   background: url("../images/home-B.jpg") center/cover no-repeat;
+}
+
+.hero-secret-trigger {
+  position: absolute;
+  top: 20.4%;
+  left: 64.2%;
+  width: clamp(24px, 4%, 44px);
+  height: clamp(24px, 8%, 44px);
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 0;
+  outline: none;
+  background: transparent;
+  cursor: default;
+}
+
+body.keyboard-navigation .hero-secret-trigger:focus-visible {
+  outline: 2px solid #2aa8ba;
+  outline-offset: 2px;
 }
 
 .hero-quote {
@@ -206,6 +249,44 @@ h2 {
 section p {
   line-height: 2;
   font-size: 0.9rem;
+}
+
+.not-found {
+  text-align: center;
+}
+
+.not-found-code {
+  margin: 0;
+  font-family: "赤薔薇シンデレラ", serif;
+  font-size: clamp(4rem, 12vw, 7rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: #aaa;
+}
+
+.not-found-code + span {
+  font-family: "赤薔薇シンデレラ", serif;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  color: #aaa;
+  /* padding-top: 0; */
+}
+
+.not-found h2 {
+  margin: 24px 0 10px;
+  font-size: 1.2rem;
+}
+
+.not-found-home {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+}
+
+.not-found-home:hover {
+  background: #555;
 }
 
 .update {
@@ -459,6 +540,46 @@ body.modal-open {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
+.text-modal,
+.modal-text-content {
+  scrollbar-width: none;
+}
+
+.text-modal::-webkit-scrollbar,
+.modal-text-content::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-scrollbar-indicator {
+  position: fixed;
+  z-index: 1;
+  width: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-scrollbar-indicator.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  left: 2px;
+  min-height: 24px;
+  border-radius: 4px;
+  background: #999;
+  cursor: grab;
+  touch-action: none;
+}
+
+.modal-scrollbar-thumb:active {
+  cursor: grabbing;
+}
+
 .text-modal::backdrop {
   background: rgba(0, 0, 0, 0.55);
 }
@@ -468,6 +589,10 @@ body.modal-open {
   justify-content: center;
   margin-bottom: 12px;
   text-align: center;
+}
+
+#secretModal .text-modal-header {
+  margin-bottom: 4px;
 }
 
 .text-modal h3 {
@@ -507,13 +632,56 @@ body.modal-open {
 
 .modal-text-content {
   width: 100%;
-  height: min(65vh, 560px);
+  height: auto;
+  max-height: min(65vh, 560px);
   padding: 1em 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   white-space: pre-wrap;
   font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
   line-height: 1.8;
+}
+
+.secret-info-group {
+  margin-top: 1.5em;
+}
+
+.secret-info-group + .secret-info-group {
+  padding-top: 0.75em;
+  border-top: 1px solid #ddd;
+}
+
+.secret-info-group h4 {
+  margin: 0 0 0.6em;
+  color: inherit;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+#secretModalContent {
+  padding-top: 0;
+}
+
+.secret-info-intro {
+  margin: 0 0 1.5em;
+  text-align: center;
+}
+
+.secret-info-list {
+  display: block;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.secret-info-list dt {
+  color: inherit;
+  text-align: left;
+  font-weight: 600;
+}
+
+.secret-info-list dd {
+  margin: 0 0 1em 1em;
 }
 
 #modalText {
@@ -618,6 +786,13 @@ body.modal-open {
   margin: 10px 0 0;
 }
 
+/* iPadとか */
+@media (max-width: 900px){
+  .header-month {
+    display: none;
+  }
+}
+
 /* スマホ */
 @media (max-width: 600px) {
   .book-layout {
@@ -693,6 +868,10 @@ footer {
 @media (max-width: 600px) {
   .hero-image {
     aspect-ratio: 2 / 1;
+  }
+
+  .hero-secret-trigger {
+    left: 71.3%;
   }
 
   .hero-quote {

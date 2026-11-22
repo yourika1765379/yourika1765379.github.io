@@ -1,0 +1,68 @@
+<section class="secret-message-intro">
+  リクエストいただけたら優先して書くと思います。たぶん。
+</section>
+
+<section class="secret-message-group">
+  <h3>荼毘ホー、燈啓</h3>
+  <dl>
+    <dt>荼毘に付さない</dt>
+    <dd>大戦後if 幸せ同棲ハッピーエンド……？</dd>
+    <dt>十二歳　時すでに春は隣</dt>
+    <dd>幼少期if 鷹見父が捕まるのが遅かった話</dd>
+    <dt>先天性アルジャーノン</dt>
+    <dd>記憶あり転生現パロ</dd>
+    <dt>雲外蒼天、欲張りと恩知らず</dt>
+    <dd>ヴィラヴィラっぽいやつ</dd>
+    <dt>『■■』</dt>
+    <dd>個性のない世界で個性を持って生まれた啓悟くんと、幼なじみの燈矢くん</dd>
+    <dt>愚鈍の空にも花は咲く</dt>
+    <dd>概念団地妻</dd>
+    <dt>フルマリテ</dt>
+    <dd>プロヴィラっぽいやつ</dd>
+  </dl>
+</section>
+
+<section class="secret-message-group">
+  <h3>常ホー、常闇夢</h3>
+  <dl></dl>
+</section>
+
+<section class="secret-message-group">
+  <h3>アイナナ</h3>
+  <dl>
+    <dt>鮮血とペンライト</dt>
+    <dd>虎トウの逆行モノみたいなやつ</dd>
+    <dt>冒涜</dt>
+    <dd>オルカイのシリアスギャグ</dd>
+    <dt>不可逆的感情濃度 / 逆説的体温測定 / 潜在的心不全</dt>
+    <dd>クオコノ・カバコノっぽい3人が家族になろうよする話。三部作</dd>
+    <dt>何をしてるの、七瀬さん</dt>
+    <dd>虎トウ推し(？)の七瀬さん</dd>
+    <dt>La Dance Macapudding ―死も踊る購買戦線―</dt>
+    <dd>ダンマカの学パロ。購買のプリンを賭けた仁義なき戦い</dd>
+    <dt></dt>
+    <dd></dd>
+  </dl>
+</section>
+<script>
+const groups = Array.from(document.querySelectorAll(".secret-message-group"))
+  .map((group) => ({
+    label: group.querySelector("h3")?.textContent.trim() || "",
+    entries: Array.from(group.querySelectorAll("dl dt"))
+      .map((term) => {
+        const description = term.nextElementSibling;
+        if (!description || description.tagName !== "DD") return null;
+
+        return {
+          label: term.textContent.trim(),
+          value: description.textContent.trim()
+        };
+      })
+      .filter((entry) => entry && (entry.label || entry.value))
+  }))
+  .filter((group) => group.label && group.entries.length > 0);
+
+const intro = document.querySelector(".secret-message-intro")?.textContent.trim() || "";
+
+parent.postMessage({ type: "modal-groups", intro, groups }, "*");
+</script>
