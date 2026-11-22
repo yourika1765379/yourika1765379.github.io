@@ -31,7 +31,7 @@
   <main>
     <div class="hero">
       <div class="hero-image">
-        <button class="hero-secret-trigger" type="button" aria-label="隠しメッセージを開く"></button>
+        <button class="hero-secret-trigger" type="button" tabindex="-1" aria-label="隠しメッセージを開く"></button>
       </div>
       <blockquote class="hero-quote" hidden>
         <p id="heroQuote">可哀そうは、可愛いらしい。</p>
@@ -68,7 +68,7 @@
   </main>
 
   <footer>
-    © 2026 yourika
+    © 2026 yourika<br><a href="404.html?from=hidden" class="hidden-elements">Thank you for visiting</a>
   </footer>
 
   <script src="js/common.js"></script>
@@ -90,7 +90,15 @@
       },
       {
         text: "深いため息と、火の爆ぜる小さな音は同時だった。\n何もない視界に光が灯る。",
-        source: "無光の街のオフィーリア\n—あの日見た蒼炎、空と声の色—"
+        source: "無光の街のオフィーリア —あの日見た蒼炎、空と声の色—"
+      },
+      {
+        text: "冬の夜は、やっぱりあの人だった。",
+        source: "from twilight to dawn『これがいつか恋になるとして』"
+      },
+      {
+        text: "光を織り交ぜた金糸の髪は、彼の歩みに合わせ、\nふわり、ゆらりと揺れる。",
+        source: "青い空は貴方"
       }
     ];
     const heroQuote = heroQuotes[Math.floor(Math.random() * heroQuotes.length)];

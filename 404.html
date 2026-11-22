@@ -35,7 +35,7 @@
       <span class="not-found-code">not found</span>
       <h2>お探しの頁は収蔵されておりません</h2>
       <p>移動、または削除された可能性があります。</p>
-      <a class="not-found-home" href="index.html">&nbsp;← トップへ戻る&nbsp;</a>
+      <a id="notFoundBack" class="not-found-home" href="index.html">&nbsp;← トップへ戻る&nbsp;</a>
     </section>
   </main>
 
@@ -44,5 +44,18 @@
   </footer>
 
   <script src="js/common.js"></script>
+  <script>
+    const fromHiddenLink = new URLSearchParams(window.location.search).get("from") === "hidden";
+    const backLink = document.getElementById("notFoundBack");
+
+    if (fromHiddenLink) {
+      backLink.textContent = "\u00a0← BACK\u00a0";
+      backLink.href = "#";
+      backLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.history.back();
+      });
+    }
+  </script>
 </body>
 </html>
