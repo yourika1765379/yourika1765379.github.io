@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/bookshelf.css">
+</head>
+
+<body>
+  <div id="bg"></div>
+
+  <header>
+    <h1>1/root書架</h1>
+
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../profile.html">Profile</a>
+      <details class="library-menu">
+        <summary>Library</summary>
+        <div class="submenu">
+          <a href="../9c7b/index.html">沙羅双樹の花<span>荼毘ホー</span></a>
+          <a href="index.html">すこしあかりて<span>常ホー、常闇夢</span></a>
+          <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
+        </div>
+      </details>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="bookshelf bookshelf--tokoho">
+
+      <h2>Library</h2>
+
+      <p class="shelf-description">
+        これまでに制作した常ホーや常闇夢の一覧です。
+      </p>
+
+      <!-- 小説 -->
+
+      <div class="shelf-section">
+        <h3>NOVELS / Tokoyami × Hawks</h3>
+
+        <div class="books">
+
+          <a href="0be44a57-d8fb-433e-89f9-c0b038f14d44/index.html" class="book-item">
+            <div class="book-cover no-image">
+              <img src="" alt="No Image">
+            </div>
+            <p class="book-title book-title-standard">青い空は貴方</p>
+          </a>
+
+          <a href="87de07de-808b-469a-8707-e32628263150/index.html" class="book-item">
+            <div class="book-cover no-image">
+              <img src="" alt="No Image">
+            </div>
+            <p class="book-title book-title-standard">黒い夜の君</p>
+          </a>
+
+        </div>
+      </div>
+      
+      <div class="shelf-section">
+        <h3>NOVELS / x reader</h3>
+
+        <div class="books">
+
+          <a href="ec175fad-d4e1-44f6-a0cd-3dfde95e65c6/index.html" class="book-item">
+            <div class="book-cover">
+              <img src="image/fttd/hyoushi.jpg" alt="作品A">
+            </div>
+            <p class="book-title book-title-r18">
+              <span>from twilight to dawn</span>
+            </p>
+          </a>
+
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <img
+    id="little-dabiho-walk"
+    src="image/little-dabiho-walk.GIF"
+    alt=""
+    aria-hidden="true"
+    style="position: absolute; left: 0; top: 0; width: 88px; max-width: 20vw; max-height: 16vh; object-fit: contain; z-index: 999; pointer-events: none; visibility: hidden;"
+  >
+  <script>
+    const littleDabiho = document.getElementById("little-dabiho-walk");
+    function placeLittleDabiho() {
+      const bounds = littleDabiho.getBoundingClientRect();
+      const maxLeft = Math.max(0, window.innerWidth - bounds.width);
+      const maxTop = Math.max(0, window.innerHeight - bounds.height);
+      littleDabiho.style.left = `${window.scrollX + Math.random() * maxLeft}px`;
+      littleDabiho.style.top = `${window.scrollY + Math.random() * maxTop}px`;
+      littleDabiho.style.visibility = "visible";
+    }
+    if (littleDabiho.complete) {
+      placeLittleDabiho();
+    } else {
+      littleDabiho.addEventListener("load", placeLittleDabiho, { once: true });
+    }
+  </script>
+
+  <footer>
+    © 2026 yourika
+  </footer>
+
+  <script src="../js/common.js"></script>
+</body>
+</html>

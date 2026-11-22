@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/bookshelf.css">
+</head>
+
+<body>
+  <div id="bg"></div>
+
+  <header>
+    <h1>1/root書架</h1>
+
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="../../profile.html">Profile</a>
+      <details class="library-menu">
+        <summary>Library</summary>
+        <div class="submenu">
+          <a href="../../9c7b/index.html">沙羅双樹の花<span>荼毘ホー</span></a>
+          <a href="../index.html">すこしあかりて<span>常ホー、常闇夢</span></a>
+          <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
+        </div>
+      </details>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+  </header>
+
+
+  <main>
+    <section class="book">
+      <div class="book-layout">
+        <div class="slider">
+          <button class="arrow" id="prev" disabled>◀</button>
+          <div class="hyoushi">
+            <div class="slide-track" id="slideTrack">
+              <div class="slide"><img src="../image/fttd/hyoushi.jpg" alt="表紙"></div>
+            </div>
+          </div>
+          <button class="arrow" id="next">▶</button>
+          <p id="pageNumber">1 / 1</p>
+        </div>
+        <aside class="book-info" aria-label="作品紹介">
+          <h2 class="book-title book-title--chogokubo">from twilight to dawn</h2>
+          <h3>あらすじ</h3>
+          <p class="book-synopsis">
+            常闇くんと名前なし夢主の夢小説だったり短い漫画だったり。<br>
+            プロヒーローツクヨミに推し変させられた見習いスタイリスト、<br>
+            推し活の名目で夜更かしする女、常闇に憧れて雄英に進学した少女、<br>
+            絵本の王子様に憧れる小さなお姫さま。<br>
+            恋愛要素は薄め。書き直したい。
+          </p>
+          <div class="chapter-list">
+            <ul>
+              <li>ハローヒーロー、エマージェンシー</li>
+              <li>黒く輝く</li>
+              <li>これがいつか恋になるとして</li>
+              <li>What the Tsukuyomi made of?</li>
+              <li>俗に言う初恋泥棒</li>
+            </ul>
+          </div>
+          <h3>初版</h3>
+          <p class="book-synopsis">
+            2026/1　※未頒布
+          </p>
+        </aside>
+      </div>
+    </section>
+    <div class="book-return">
+      <a class="btn-back-minimal" href="../index.html">&nbsp;← BACK&nbsp;</a>
+    </div>
+  </main>
+
+<script>
+const track = document.getElementById("slideTrack");
+const slides = track.querySelectorAll(".slide");
+
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+const pageNumber = document.getElementById("pageNumber");
+
+let currentIndex = 0;
+let isAnimating = false;
+
+function updateButtons() {
+  prevButton.disabled = currentIndex === 0;
+  nextButton.disabled = currentIndex === slides.length - 1;
+
+  pageNumber.textContent =
+    `${currentIndex + 1} / ${slides.length}`;
+}
+
+function moveSlide(direction) {
+  if (isAnimating) return;
+
+  const nextIndex = currentIndex + direction;
+
+  if (nextIndex < 0 || nextIndex >= slides.length) return;
+
+  isAnimating = true;
+  currentIndex = nextIndex;
+
+  const slideWidth = slides[0].getBoundingClientRect().width;
+
+  track.style.transform =
+    `translateX(-${slideWidth * currentIndex}px)`;
+
+  updateButtons();
+}
+
+track.addEventListener("transitionend", () => {
+  isAnimating = false;
+});
+
+prevButton.addEventListener("click", () => {
+  moveSlide(-1);
+});
+
+nextButton.addEventListener("click", () => {
+  moveSlide(1);
+});
+
+updateButtons();
+</script>
+
+  <img
+    id="little-dabiho-walk"
+    src="../image/little-dabiho-walk.GIF"
+    alt=""
+    aria-hidden="true"
+    style="position: absolute; left: 0; top: 0; width: 88px; max-width: 20vw; max-height: 16vh; object-fit: contain; z-index: 999; pointer-events: none; visibility: hidden;"
+  >
+  <script>
+    const littleDabiho = document.getElementById("little-dabiho-walk");
+    function placeLittleDabiho() {
+      const bounds = littleDabiho.getBoundingClientRect();
+      const maxLeft = Math.max(0, window.innerWidth - bounds.width);
+      const maxTop = Math.max(0, window.innerHeight - bounds.height);
+      littleDabiho.style.left = `${window.scrollX + Math.random() * maxLeft}px`;
+      littleDabiho.style.top = `${window.scrollY + Math.random() * maxTop}px`;
+      littleDabiho.style.visibility = "visible";
+    }
+    if (littleDabiho.complete) {
+      placeLittleDabiho();
+    } else {
+      littleDabiho.addEventListener("load", placeLittleDabiho, { once: true });
+    }
+  </script>
+
+  <footer>
+    © 2026 yourika
+  </footer>
+
+  <script src="../../js/common.js"></script>
+</body>
+</html>
