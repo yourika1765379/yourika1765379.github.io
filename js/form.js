@@ -1,4 +1,3 @@
-
 // ==========================================
 // Googleフォーム設定
 // ==========================================
@@ -15,7 +14,6 @@ const ENTRY_IDS = {
   bugMessage: "entry.745806829",
   otherDetail: "entry.626174794"
 };
-
 
 // ==========================================
 // 選択肢設定
@@ -34,7 +32,6 @@ const pages = [
   "Library",
   "Contact"
 ];
-
 
 // ==========================================
 // DOM取得
@@ -57,7 +54,6 @@ const status = document.getElementById("status");
 const submitButton = document.getElementById("submitButton");
 const bookSelect = document.getElementById("bookSelect");
 
-
 // ==========================================
 // 選択肢を自動生成
 // ==========================================
@@ -70,10 +66,8 @@ books.forEach((book, index) => {
   bookSelect.appendChild(option);
 });
 
-
 // チェックボックス生成
 pages.forEach((page, index) => {
-
   const label = document.createElement("label");
   const input = document.createElement("input");
 
@@ -83,9 +77,7 @@ pages.forEach((page, index) => {
 
   label.append(input, document.createTextNode(page));
   pageOptions.appendChild(label);
-
 });
-
 
 // ==========================================
 // 質問1：分岐処理
@@ -93,9 +85,7 @@ pages.forEach((page, index) => {
 
 form.querySelectorAll('input[name="category"]')
   .forEach(input => {
-
     input.addEventListener("change", () => {
-
       const value = input.value;
       status.textContent = "";
       status.classList.remove("error");
@@ -117,40 +107,33 @@ form.querySelectorAll('input[name="category"]')
 
       // 本の感想・誤字報告
       if (value === "作品についての感想・誤字報告") {
-
         bookSection.hidden = false;
         bookSelect.required = true;
         bookMessage.required = true;
         submitButton.hidden = false;
-
       }
 
       // サイトの不具合
       else if (value === "サイトの不具合・バグ報告") {
-
         bugSection.hidden = false;
         bugMessage.required = true;
         submitButton.hidden = false;
-
       }
 
       // その他
       else if (value === "その他") {
-
         otherSection.hidden = false;
         otherText.disabled = false;
         otherDetail.disabled = false;
         otherText.required = true;
         otherDetail.required = true;
         submitButton.hidden = false;
-
       }
 
       updateSubmitButton();
     });
-
-  });
-
+  }
+);
 
 // ==========================================
 // 送信ボタンの表示・活性制御
@@ -215,13 +198,11 @@ pageOptions.addEventListener("change", () => {
   updateSubmitButton();
 });
 
-
 // ==========================================
 // Googleフォーム送信
 // ==========================================
 
 form.addEventListener("submit", event => {
-
   event.preventDefault();
 
   if (
@@ -263,7 +244,6 @@ form.addEventListener("submit", event => {
 
   // 質問2・3
   if (selectedCategory === "作品についての感想・誤字報告") {
-
     values.push({
       name: ENTRY_IDS.book,
       value: bookSelect.value
@@ -273,12 +253,10 @@ form.addEventListener("submit", event => {
       name: ENTRY_IDS.bookMessage,
       value: bookMessage.value
     });
-
   }
 
   // 質問4・5
   else if (selectedCategory === "サイトの不具合・バグ報告") {
-
     const selectedPages =
       form.querySelectorAll('input[name="pages"]:checked');
 
@@ -293,12 +271,10 @@ form.addEventListener("submit", event => {
       name: ENTRY_IDS.bugMessage,
       value: bugMessage.value
     });
-
   }
 
   // 質問6：その他
   else if (selectedCategory === "その他") {
-
     values.push({
       name: ENTRY_IDS.category + ".other_option_response",
       value: otherText.value
@@ -308,13 +284,10 @@ form.addEventListener("submit", event => {
       name: ENTRY_IDS.otherDetail,
       value: otherDetail.value
     });
-
   }
-
 
   // POST用のinputを生成
   values.forEach(item => {
-
     const input = document.createElement("input");
 
     input.type = "hidden";

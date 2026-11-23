@@ -181,7 +181,7 @@ main {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 1;
-  background: url("../images/home-B.jpg") center/cover no-repeat;
+  background: url("../image/home-B.jpg") center/cover no-repeat;
 }
 
 .hero-secret-trigger {

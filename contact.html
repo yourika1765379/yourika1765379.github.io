@@ -46,6 +46,7 @@
         <!-- 質問1 -->
         <section>
           <h3>お問い合わせ内容</h3>
+
           <label>
             <input type="radio" name="category"
             value="作品についての感想・誤字報告" required>
@@ -69,6 +70,7 @@
         <!-- 質問2・3 -->
         <section id="bookSection" hidden>
           <h3>本を選択</h3>
+
           <div class="selectbox-5">
             <select id="bookSelect" name="book">
               <option value="" selected disabled>タイトルを選択してください</option>
@@ -76,21 +78,25 @@
           </div>
 
           <h3>感想・誤字報告</h3>
+
           <textarea id="bookMessage" name="bookMessage"></textarea>
         </section>
 
         <!-- 質問4・5 -->
         <section id="bugSection" hidden>
           <h3>該当ページ選択</h3>
+
           <div id="pageOptions"></div>
 
           <h3>不具合の内容</h3>
+
           <textarea id="bugMessage" name="bugMessage"></textarea>
         </section>
 
         <!-- 質問6 -->
         <section id="otherDetail" hidden>
           <h3>その他</h3>
+
           <textarea id="otherDetailMessage" name="otherDetailMessage" disabled></textarea>
         </section>
 
@@ -104,7 +110,8 @@
   </main>
 
   <footer>
-    © 2026 yourika<br><a href="404.html?from=hidden" class="hidden-elements">Thank you for visiting</a>
+    © 2026 yourika<br>
+    <a href="404.html?from=hidden" class="hidden-elements">Thank you for visiting</a>
   </footer>
 
   <script src="js/common.js"></script>
