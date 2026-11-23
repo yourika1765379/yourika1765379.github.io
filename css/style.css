@@ -31,6 +31,12 @@ html.scrollbar-gutter-stable {
 }
 
 @font-face {
+  font-family: "ワープロ明朝";
+  src: url("../font/wapuro-mincho.otf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "KazukiReiwa Regular";
   src: url("../font/KazukiReiwa - Regular.ttf") format("truetype");
   font-weight: 400;
@@ -872,6 +878,52 @@ body.coming footer {
 
 .link-design-04:hover {
   opacity: 0.65;
+}
+
+.gif-bubble {
+  font-family: "ワープロ明朝", serif;
+  position: absolute;
+  z-index: 1000;
+  max-width: 80vw;
+  padding: 6px 12px;
+  /* border: 1px solid #333; */
+  /* border-radius: 12px; */
+  background: #fff176;
+  /* box-shadow: 0 2px 6px rgb(0 0 0 / 15%); */
+  color: #164653;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+}
+
+.gif-bubble::after {
+  content: "";
+
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 7px;
+  height: 7px;
+  border-top: 7px solid #fff176;
+  border-right: 7px solid #fff176;
+  /* filter: drop-shadow(0 2px 2px rgb(0 0 0 / 15%)); */
+}
+
+.gif-bubble.is-below {
+  transform: translateX(-50%);
+}
+
+.gif-bubble.is-below::after {
+  top: auto;
+  bottom: calc(100% - 1px);
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 7px solid #fff176;
+  border-left: 7px solid #fff176;
 }
 
 @media screen and (max-width: 600px) {

@@ -131,26 +131,27 @@ updateButtons();
 </script>
 
   <img
-    id="little-dabiho-walk"
+    id="page-gif"
+    data-bubble-group="a1f3"
     src="../image/little-dabiho-walk.GIF"
     alt=""
     aria-hidden="true"
     style="position: absolute; left: 0; top: 0; width: 88px; max-width: 20vw; max-height: 16vh; object-fit: contain; z-index: 999; pointer-events: none; visibility: hidden;"
   >
   <script>
-    const littleDabiho = document.getElementById("little-dabiho-walk");
-    function placeLittleDabiho() {
-      const bounds = littleDabiho.getBoundingClientRect();
+    const pageGif = document.getElementById("page-gif");
+    function placePageGif() {
+      const bounds = pageGif.getBoundingClientRect();
       const maxLeft = Math.max(0, window.innerWidth - bounds.width);
       const maxTop = Math.max(0, window.innerHeight - bounds.height);
-      littleDabiho.style.left = `${window.scrollX + Math.random() * maxLeft}px`;
-      littleDabiho.style.top = `${window.scrollY + Math.random() * maxTop}px`;
-      littleDabiho.style.visibility = "visible";
+      pageGif.style.left = `${window.scrollX + Math.random() * maxLeft}px`;
+      pageGif.style.top = `${window.scrollY + Math.random() * maxTop}px`;
+      pageGif.style.visibility = "visible";
     }
-    if (littleDabiho.complete) {
-      placeLittleDabiho();
+    if (pageGif.complete) {
+      placePageGif();
     } else {
-      littleDabiho.addEventListener("load", placeLittleDabiho, { once: true });
+      pageGif.addEventListener("load", placePageGif, { once: true });
     }
   </script>
 

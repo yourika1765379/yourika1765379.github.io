@@ -120,8 +120,138 @@ function setupModalScrollbars() {
     window.addEventListener("resize", () => updateScrollbars.forEach((update) => update()));
 }
 
+const draggableImageMessages = {
+    "9c7b": [
+        "　　　　　　　　　　　",
+        "今日の空って何色？",
+        "（幸せＨＡＰＰＹキャッキャウフフな荼ホさん、書きたい）"
+    ],
+    "a1f3": [
+        "俺がヒーローになったら、会いにおいで",
+        "じゃ、待ってるよ。ツクヨミ",
+        "（常闇くん、かっこよすぎて滅）"
+    ],
+    default: ["夜露死苦"]
+};
+
+function setupDraggableImages() {
+    document.querySelectorAll("#page-gif").forEach((image) => {
+        if (image.dataset.dragReady === "true") return;
+
+        if (!image.complete) {
+            image.addEventListener("load", setupDraggableImages, { once: true });
+            image.addEventListener("error", () => {
+                image.style.visibility = "hidden";
+            }, { once: true });
+            return;
+        }
+
+        if (image.naturalWidth === 0) {
+            image.style.visibility = "hidden";
+            return;
+        }
+
+        image.dataset.dragReady = "true";
+        image.draggable = false;
+        image.style.pointerEvents = "auto";
+        image.style.cursor = "grab";
+        image.style.touchAction = "none";
+        image.style.userSelect = "none";
+        image.style.webkitUserDrag = "none";
+
+        let dragState;
+        let bubbleTimer;
+        const bubble = document.createElement("span");
+        bubble.className = "gif-bubble";
+        bubble.hidden = true;
+        bubble.setAttribute("role", "status");
+        bubble.setAttribute("aria-live", "polite");
+        document.body.appendChild(bubble);
+
+        const showBubble = () => {
+            const imageBounds = image.getBoundingClientRect();
+            const messages = draggableImageMessages[image.dataset.bubbleGroup]
+                || draggableImageMessages.default;
+            bubble.textContent = messages[Math.floor(Math.random() * messages.length)];
+            bubble.hidden = false;
+            bubble.classList.remove("is-below");
+
+            const bubbleBounds = bubble.getBoundingClientRect();
+            const centerX = Math.min(
+                window.innerWidth - bubbleBounds.width / 2 - 8,
+                Math.max(bubbleBounds.width / 2 + 8, imageBounds.left + imageBounds.width / 2)
+            );
+            bubble.style.left = `${window.scrollX + centerX}px`;
+
+            if (imageBounds.top < bubbleBounds.height + 16) {
+                bubble.classList.add("is-below");
+                bubble.style.top = `${window.scrollY + imageBounds.bottom + 8}px`;
+            } else {
+                bubble.style.top = `${window.scrollY + imageBounds.top - 8}px`;
+            }
+
+            window.clearTimeout(bubbleTimer);
+            bubbleTimer = window.setTimeout(() => {
+                bubble.hidden = true;
+            }, 2500);
+        };
+
+        const hideBubble = () => {
+            bubble.hidden = true;
+            window.clearTimeout(bubbleTimer);
+        };
+
+        image.addEventListener("pointerdown", (event) => {
+            if (event.button !== 0) return;
+
+            event.preventDefault();
+            const bounds = image.getBoundingClientRect();
+            dragState = {
+                pointerId: event.pointerId,
+                startX: event.pageX,
+                startY: event.pageY,
+                left: parseFloat(image.style.left) || 0,
+                top: parseFloat(image.style.top) || 0,
+                moved: false,
+                maxLeft: Math.max(0, document.documentElement.scrollWidth - bounds.width),
+                maxTop: Math.max(0, document.documentElement.scrollHeight - bounds.height)
+            };
+            image.style.cursor = "grabbing";
+            image.setPointerCapture(event.pointerId);
+        });
+
+        image.addEventListener("pointermove", (event) => {
+            if (!dragState || event.pointerId !== dragState.pointerId) return;
+
+            const deltaX = event.pageX - dragState.startX;
+            const deltaY = event.pageY - dragState.startY;
+            if (!dragState.moved && Math.hypot(deltaX, deltaY) < 4) return;
+
+            dragState.moved = true;
+            hideBubble();
+            const left = dragState.left + deltaX;
+            const top = dragState.top + deltaY;
+            image.style.left = `${Math.min(dragState.maxLeft, Math.max(0, left))}px`;
+            image.style.top = `${Math.min(dragState.maxTop, Math.max(0, top))}px`;
+        });
+
+        const stopDragging = (event, showBubbleOnClick) => {
+            if (!dragState || event.pointerId !== dragState.pointerId) return;
+
+            const wasClick = !dragState.moved;
+            dragState = null;
+            image.style.cursor = "grab";
+            if (showBubbleOnClick && wasClick) showBubble();
+        };
+        image.addEventListener("pointerup", (event) => stopDragging(event, true));
+        image.addEventListener("pointercancel", (event) => stopDragging(event, false));
+        image.addEventListener("dragstart", (event) => event.preventDefault());
+    });
+}
+
 async function init() {
     setupModalScrollbars();
+    setupDraggableImages();
 
     const siteTitle = document.querySelector("header h1");
     if (siteTitle && Math.random() < 0.0001) {
