@@ -1,4 +1,3 @@
-
 /* =====================
    本棚
 ===================== */
@@ -9,7 +8,6 @@
 
 .shelf-description {
   text-align: center;
-  /* color: #777; */
   margin-bottom: 45px;
   line-height: 2;
 }
@@ -97,12 +95,8 @@
 /* タイトル */
 .bookshelf .book-title {
   font-size: 0.9rem;
-  line-height: 1.7;
+  line-height: 1.4;
   margin: 12px 0 0;
-}
-
-.bookshelf .book-title {
-  margin-bottom: 0.5rem;
   font-family: inherit;
 }
 
@@ -127,6 +121,13 @@
   font-size: 0.7rem;
   color: #888;
   margin: 0;
+}
+
+.book-info .book-title,
+.book-info .book-subtitle {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.4;
 }
 
 .book .book-subtitle {
@@ -177,16 +178,11 @@
   text-decoration: none;
   cursor: pointer;
   transition: 0.3s;
-  gap: 0.5em;
 }
 
 .btn-back-minimal:hover {
   opacity: 0.5;
   transform: translateX(-4px);
-}
-
-.book h2:not(.book-title):not(.book-subtitle) {
-  font-family: "タイムマシンわ号", serif;
 }
 
 .book-layout {
