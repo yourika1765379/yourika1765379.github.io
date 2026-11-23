@@ -903,7 +903,7 @@ body.coming footer {
 
   position: absolute;
   top: calc(100% - 1px);
-  left: 50%;
+  left: var(--tail-x, 50%);
   transform: translateX(-50%);
 
   width: 7px;

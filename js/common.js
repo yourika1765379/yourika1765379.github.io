@@ -181,11 +181,17 @@ function setupDraggableImages() {
                 window.innerWidth - bubbleBounds.width / 2 - 8,
                 Math.max(bubbleBounds.width / 2 + 8, imageBounds.left + imageBounds.width / 2)
             );
+            const bubbleLeft = centerX - bubbleBounds.width / 2;
+            const tailX = Math.min(
+                bubbleBounds.width - 7,
+                Math.max(7, imageBounds.left + imageBounds.width / 2 - bubbleLeft)
+            );
+            bubble.style.setProperty("--tail-x", `${tailX}px`);
             bubble.style.left = `${window.scrollX + centerX}px`;
 
             if (imageBounds.top < bubbleBounds.height + 16) {
                 bubble.classList.add("is-below");
-                bubble.style.top = `${window.scrollY + imageBounds.bottom + 8}px`;
+                bubble.style.top = `${window.scrollY + imageBounds.bottom + 15}px`;
             } else {
                 bubble.style.top = `${window.scrollY + imageBounds.top - 8}px`;
             }
