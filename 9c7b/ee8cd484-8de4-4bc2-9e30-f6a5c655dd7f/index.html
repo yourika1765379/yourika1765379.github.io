@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,noarchive,nofollow,noimageindex">
   <title>Library / 沙羅双樹の花</title>
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/bookshelf.css">
@@ -79,27 +80,27 @@
           </a>
         </aside>
       </div>
-      <div id="quiz">
-        <form id="quizForm">
+      <div class="book-unlock" data-book-unlock data-answer="インスタントの味噌汁" data-hint="ヒント：○○○○○○○○○○なんかが二杯あれば" data-result-target="#unlockResult" data-success-delay="400">
+        <form data-unlock-form>
           <span>Q. 荼毘が最後に望んだ暮らしを象徴するものは何か。<br>
           &nbsp;&nbsp;本文中から10文字で抜き出してください。</span><br>
 
-          <span id="hint"></span><br>
+          <span class="book-unlock-hint" data-unlock-hint></span><br>
 
-          <input id="answer">
-          <button class="btn-seal" type="submit">UNLOCK</button>
+          <input class="book-unlock-answer" data-unlock-answer>
+          <button class="book-unlock-submit" type="submit">UNLOCK</button>
         </form>
       </div>
 
-      <div id="result" hidden>
-        <div class="result-images">
-          <button class="result-image-button" type="button" data-text="text/not_afraid_to.html">
+      <div id="unlockResult" class="book-unlock-result" hidden>
+        <div class="book-result-images">
+          <button class="book-result-image" type="button" data-modal-text="text/not_afraid_to.html">
             <img src="../image/Ashes/postcard_A-1.jpg" alt="not afraid to.">
           </button>
           <button
-            class="result-image-button"
+            class="book-result-image"
             type="button"
-            data-text="text/happy_unhappy.html"
+            data-modal-text="text/happy_unhappy.html"
             data-strikethrough="unhappy"
           >
             <img src="../image/Ashes/postcard_B-2.jpg" alt="happy unhappy">
@@ -107,14 +108,14 @@
         </div>
       </div>
 
-      <dialog id="textModal" class="text-modal" aria-labelledby="modalTitle">
+      <dialog id="textModal" class="text-modal" data-text-modal aria-labelledby="modalTitle">
         <div class="text-modal-header">
-          <h3 id="modalTitle"></h3>
+          <h3 id="modalTitle" data-modal-title></h3>
         </div>
-        <div id="modalTextContent" class="modal-text-content" role="document" tabindex="0" aria-label="作品テキスト">読み込み中…</div>
-        <iframe id="modalText" title="作品テキスト" sandbox="allow-scripts" hidden></iframe>
+        <div id="modalTextContent" class="modal-text-content" data-modal-content role="document" tabindex="0" aria-label="作品テキスト">読み込み中…</div>
+        <iframe id="modalText" title="作品テキスト" data-modal-frame sandbox="allow-scripts" hidden></iframe>
         <div class="text-modal-footer">
-          <button id="closeTextModal" class="modal-close" type="button" autofocus>close</button>
+          <button id="closeTextModal" class="modal-close" data-modal-close type="button" autofocus>close</button>
         </div>
       </dialog>
     </section>
@@ -123,194 +124,18 @@
     </div>
   </main>
 
-<script>
-const track = document.getElementById("slideTrack");
-const slides = track.querySelectorAll(".slide");
-
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
-const pageNumber = document.getElementById("pageNumber");
-const textModal = document.getElementById("textModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalText = document.getElementById("modalText");
-const modalTextContent = document.getElementById("modalTextContent");
-const quizForm = document.getElementById("quizForm");
-
-let currentIndex = 0;
-let isAnimating = false;
-let pageScrollY = 0;
-
-function updateButtons() {
-  prevButton.disabled = currentIndex === 0;
-  nextButton.disabled = currentIndex === slides.length - 1;
-
-  pageNumber.textContent =
-    `${currentIndex + 1} / ${slides.length}`;
-}
-
-function moveSlide(direction) {
-  if (isAnimating) return;
-
-  const nextIndex = currentIndex + direction;
-
-  if (nextIndex < 0 || nextIndex >= slides.length) return;
-
-  isAnimating = true;
-  currentIndex = nextIndex;
-
-  const slideWidth = slides[0].getBoundingClientRect().width;
-
-  track.style.transform =
-    `translateX(-${slideWidth * currentIndex}px)`;
-
-  updateButtons();
-}
-
-track.addEventListener("transitionend", () => {
-  isAnimating = false;
-});
-
-prevButton.addEventListener("click", () => {
-  moveSlide(-1);
-});
-
-nextButton.addEventListener("click", () => {
-  moveSlide(1);
-});
-
-document.querySelectorAll(".result-image-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    const textPath = button.dataset.text;
-    if (!textPath) {
-      console.error("モーダルのテキストファイルが指定されていません。");
-      return;
-    }
-
-    const title = button.querySelector("img").alt;
-    const strikethrough = button.dataset.strikethrough;
-    const strikethroughIndex = strikethrough ? title.indexOf(strikethrough) : -1;
-
-    if (strikethroughIndex === -1) {
-      modalTitle.textContent = title;
-    } else {
-      const deletedText = document.createElement("del");
-      deletedText.textContent = strikethrough;
-      modalTitle.replaceChildren(
-        document.createTextNode(title.slice(0, strikethroughIndex)),
-        deletedText,
-        document.createTextNode(title.slice(strikethroughIndex + strikethrough.length))
-      );
-    }
-
-    modalTextContent.textContent = "読み込み中…";
-    modalText.src = textPath;
-    pageScrollY = window.scrollY;
-    document.body.style.top = `-${pageScrollY}px`;
-    document.body.classList.add("modal-open");
-    textModal.showModal();
-  });
-});
-
-window.addEventListener("message", (event) => {
-  if (event.source !== modalText.contentWindow) return;
-
-  const message = event.data;
-  if (!message || message.type !== "modal-text" || typeof message.text !== "string") return;
-
-  modalTextContent.textContent = message.text;
-});
-
-document.getElementById("closeTextModal").addEventListener("click", () => {
-  textModal.close();
-});
-
-textModal.addEventListener("click", (event) => {
-  if (event.target === textModal) {
-    textModal.close();
-  }
-});
-
-textModal.addEventListener("close", () => {
-  document.body.classList.remove("modal-open");
-  document.body.style.top = "";
-  window.scrollTo(0, pageScrollY);
-});
-
-textModal.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    event.preventDefault();
-    textModal.close();
-  }
-});
-
-updateButtons();
-
-quizForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  checkAnswer();
-});
-
-function checkAnswer() {
-    const answer = document.getElementById("answer").value.trim();
-
-    if (answer === "インスタントの味噌汁") {
-        const quiz = document.getElementById("quiz");
-        const result = document.getElementById("result");
-
-        quiz.classList.add("hide");
-
-        setTimeout(() => {
-            quiz.hidden = true;
-
-            result.hidden = false;
-
-            // 次の描画タイミングでフェードイン
-            requestAnimationFrame(() => {
-                result.classList.add("show");
-            });
-
-        }, 400);
-
-    } else {
-        const hint = document.getElementById("hint");
-
-        hint.textContent =
-            "ヒント：○○○○○○○○○○なんかが二杯あれば";
-
-        hint.classList.add("show");
-    }
-}
-</script>
-
   <img
     id="page-gif"
     data-bubble-group="9c7b"
     src="../image/little-dabiho-walk.GIF"
     alt=""
     aria-hidden="true"
-    style="position: absolute; left: 0; top: 0; width: 88px; max-width: 20vw; max-height: 16vh; object-fit: contain; z-index: 999; pointer-events: none; visibility: hidden;"
   >
-  <script>
-    const pageGif = document.getElementById("page-gif");
-    function placePageGif() {
-      const bounds = pageGif.getBoundingClientRect();
-      const maxLeft = Math.max(0, window.innerWidth - bounds.width);
-      const maxTop = Math.max(0, window.innerHeight - bounds.height);
-      pageGif.style.left = `${window.scrollX + Math.random() * maxLeft}px`;
-      pageGif.style.top = `${window.scrollY + Math.random() * maxTop}px`;
-      pageGif.style.visibility = "visible";
-    }
-    if (pageGif.complete) {
-      placePageGif();
-    } else {
-      pageGif.addEventListener("load", placePageGif, { once: true });
-    }
-  </script>
-
   <footer>
     © 2026 yourika<br><a href="../../404.html?from=hidden" class="hidden-elements">Thank you for visiting</a>
   </footer>
 
+  <script src="../../js/bookshelf.js"></script>
   <script src="../../js/common.js"></script>
 </body>
 </html>

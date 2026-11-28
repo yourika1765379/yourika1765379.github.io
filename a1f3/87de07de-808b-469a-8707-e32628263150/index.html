@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,noarchive,nofollow,noimageindex">
   <title>Library / すこしあかりて</title>
   <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/bookshelf.css">
@@ -67,87 +68,18 @@
     </div>
   </main>
 
-<script>
-const track = document.getElementById("slideTrack");
-const slides = track.querySelectorAll(".slide");
-
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
-const pageNumber = document.getElementById("pageNumber");
-
-let currentIndex = 0;
-let isAnimating = false;
-
-function updateButtons() {
-  prevButton.disabled = currentIndex === 0;
-  nextButton.disabled = currentIndex === slides.length - 1;
-
-  pageNumber.textContent =
-    `${currentIndex + 1} / ${slides.length}`;
-}
-
-function moveSlide(direction) {
-  if (isAnimating) return;
-
-  const nextIndex = currentIndex + direction;
-
-  if (nextIndex < 0 || nextIndex >= slides.length) return;
-
-  isAnimating = true;
-  currentIndex = nextIndex;
-
-  const slideWidth = slides[0].getBoundingClientRect().width;
-
-  track.style.transform =
-    `translateX(-${slideWidth * currentIndex}px)`;
-
-  updateButtons();
-}
-
-track.addEventListener("transitionend", () => {
-  isAnimating = false;
-});
-
-prevButton.addEventListener("click", () => {
-  moveSlide(-1);
-});
-
-nextButton.addEventListener("click", () => {
-  moveSlide(1);
-});
-
-updateButtons();
-</script>
-
   <img
     id="page-gif"
     data-bubble-group="a1f3"
     src="../image/little_tokoho_fly.GIF"
     alt=""
     aria-hidden="true"
-    style="position: absolute; left: 0; top: 0; width: 88px; max-width: 20vw; max-height: 16vh; object-fit: contain; z-index: 999; pointer-events: none; visibility: hidden;"
   >
-  <script>
-    const pageGif = document.getElementById("page-gif");
-    function placePageGif() {
-      const bounds = pageGif.getBoundingClientRect();
-      const maxLeft = Math.max(0, window.innerWidth - bounds.width);
-      const maxTop = Math.max(0, window.innerHeight - bounds.height);
-      pageGif.style.left = `${window.scrollX + Math.random() * maxLeft}px`;
-      pageGif.style.top = `${window.scrollY + Math.random() * maxTop}px`;
-      pageGif.style.visibility = "visible";
-    }
-    if (pageGif.complete) {
-      placePageGif();
-    } else {
-      pageGif.addEventListener("load", placePageGif, { once: true });
-    }
-  </script>
-
   <footer>
     © 2026 yourika<br><a href="../../404.html?from=hidden" class="hidden-elements">Thank you for visiting</a>
   </footer>
 
+  <script src="../../js/bookshelf.js"></script>
   <script src="../../js/common.js"></script>
 </body>
 </html>

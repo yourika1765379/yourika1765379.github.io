@@ -155,6 +155,19 @@
 }
 
 /* 詳細ページ */
+#page-gif {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 88px;
+  max-width: 20vw;
+  max-height: 16vh;
+  object-fit: contain;
+  z-index: 999;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .book {
   width: 100%;
   margin: 30px auto;
@@ -308,6 +321,115 @@
   cursor: default;
 }
 
+.book-unlock {
+  margin: 2em 0 0 24px;
+  font-size: 0.75rem;
+  transition: opacity 0.4s ease;
+}
+
+.book-unlock.hide {
+  opacity: 0;
+}
+
+.book-unlock-answer {
+  width: 16em;
+  padding: 0.4em 0.5em;
+  border: 1px solid #888;
+  background: #f9f9f980;
+  border-radius: 1px;
+  font: inherit;
+  vertical-align: middle;
+}
+
+.book-unlock-answer:focus {
+  outline: 1.5px solid #2aa8ba;
+}
+
+.book-unlock-hint.show {
+  color: #777;
+}
+
+.book-unlock-submit {
+  display: inline-block;
+  padding: 0.45em 1.1em;
+  border: 1px solid #292929;
+  background: #292929;
+  color: #f5f1e9;
+  font: inherit;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  vertical-align: middle;
+}
+
+.book-unlock-submit:hover {
+  background: transparent;
+  color: #292929;
+}
+
+.book-unlock-submit:focus-visible {
+  outline: 2px solid #888;
+  outline-offset: 4px;
+}
+
+.book-unlock-result {
+  margin-left: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.book-unlock-result.show {
+  opacity: 1;
+}
+
+.book-result-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  margin: 24px 0;
+}
+
+.book-result-images img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  box-shadow: 2px 3px 5px #0001;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.book-result-image {
+  position: relative;
+  display: block;
+  flex: 0 0 160px;
+  width: 160px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.book-result-image:hover img,
+.book-result-image:focus-visible img {
+  transform: translateY(-4px);
+  box-shadow: 3px 6px 9px #0001;
+}
+
+.book-result-image:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.book-result-image:focus-visible {
+  outline: 2px solid #aaa;
+  outline-offset: 3px;
+}
+
 #pageNumber {
   grid-column: 2;
   grid-row: 2;
@@ -362,6 +484,12 @@
 
   .arrow {
     font-size: 18px;
+  }
+
+  .book-result-images {
+    max-width: 336px;
+    justify-content: center;
+    margin: 24px auto;
   }
 
 }
