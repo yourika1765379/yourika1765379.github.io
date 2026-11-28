@@ -1,76 +1,87 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Sans", "Yu Gothic", sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #f8fafc;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .container {
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
-      margin-bottom: 2rem;
-    }
-
-    .line {
-      width: 80px;
-      height: 3px;
-      margin: 0 auto;
-      background: #38bdf8;
-      border-radius: 999px;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-  </style>
+  <meta name="robots" content="noindex,noarchive,nofollow,noimageindex">
+  <title>Library / 沙羅双樹の花</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/bookshelf.css">
 </head>
 
 <body>
-  <main class="container">
-    <h1>Coming Soon</h1>
-    <p>
-      このサイトは現在準備中です。<br>
-      また後ほどお越しください。
-    </p>
-    <div class="line"></div>
+  <div id="bg"></div>
+
+  <header>
+    <h1>1/root書架</h1>
+
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../profile.html">Profile</a>
+      <details class="library-menu">
+        <summary>Library</summary>
+        <div class="submenu">
+          <a href="index.html">沙羅双樹の花<span>荼毘ホー</span></a>
+          <a href="../a1f3/index.html">すこしあかりて<span>常ホー、常闇夢</span></a>
+          <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
+        </div>
+      </details>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="bookshelf bookshelf--dabiho">
+
+      <h2>Library</h2>
+
+      <p class="shelf-description">
+        これまでに制作した荼毘ホーや燈啓の一覧です。
+      </p>
+
+      <!-- 小説 -->
+      <div class="shelf-section">
+        <h3>NOVELS</h3>
+
+        <div class="books">
+
+          <a href="ee8cd484-8de4-4bc2-9e30-f6a5c655dd7f/index.html" class="book-item">
+            <div class="book-cover">
+              <img src="image/Ashes/hyoushi.jpg" alt="作品A">
+            </div>
+            <p class="book-title book-title-r18">
+              <span>遺灰と黙示録</span>
+              <img src="../image/R18_icon.png" alt="R18">
+            </p>
+          </a>
+
+          <a href="aa5b4af9-10dc-4928-ba1f-f54a5797db08/index.html" class="book-item">
+            <div class="book-cover">
+              <img src="image/Ophelia/hyoushi.jpg" alt="作品B">
+            </div>
+            <p class="book-title">無光の街のオフィーリア</p>
+            <p class="book-subtitle">―あの日見た蒼炎、空と声の色―</p>
+          </a>
+
+        </div>
+      </div>
+
+    </section>
   </main>
 
+  <img
+    id="page-gif"
+    data-bubble-group="9c7b"
+    src="image/little-dabiho-walk.GIF"
+    alt=""
+    aria-hidden="true"
+  >
   <footer>
-    © 2026 yourika
+    © 2026 yourika<br><a href="../404.html?from=hidden" class="hidden-elements">Thank you for visiting</a>
   </footer>
+
+  <script src="../js/bookshelf.js"></script>
+  <script src="../js/common.js"></script>
 </body>
 </html>

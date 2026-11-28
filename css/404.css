@@ -1,0 +1,134 @@
+body.not-found-page {
+  color: #f4f4f4;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(248, 195, 207, 0.38),
+      rgba(247, 221, 184, 0.34),
+      rgba(190, 224, 205, 0.34),
+      rgba(186, 207, 244, 0.38),
+      rgba(218, 195, 242, 0.38)
+    ),
+    #aaa;
+  background-size: 300% 300%;
+  animation: not-found-gaming-colors 18s ease infinite;
+}
+
+body.not-found-page #bg {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.20) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+@keyframes not-found-gaming-colors {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.not-found-page {
+    animation: none;
+  }
+
+  body.not-found-page .not-found-code {
+    animation: none;
+  }
+}
+
+body.not-found-page nav a,
+body.not-found-page nav summary {
+  background: #f4f4f4;
+  color: #2aa8ba;
+}
+
+body.not-found-page .submenu a {
+  background: #d8d8d8;
+  border-top-color: #b5b5b5;
+  color: #222;
+}
+
+body.not-found-page nav a:hover,
+body.not-found-page summary:hover,
+body.not-found-page .submenu a:hover {
+  background: #e9e9e9;
+  color: #2aa8ba;
+}
+
+body.not-found-page .not-found-code {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background:
+    linear-gradient(
+      135deg,
+      #2aa8ba,
+      #63bfc5,
+      #628fd0,
+      #777fc2,
+      #8874c0,
+      #2aa8ba
+    );
+  background-size: 300% 300%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: not-found-gaming-text 12s ease infinite;
+}
+
+body.not-found-page p.not-found-code {
+  font-size: clamp(4.5rem, 34vw, 8rem);
+}
+
+body.not-found-page span.not-found-code {
+  font-size: clamp(1.5rem, 20vw, 2.8rem);
+  letter-spacing: 0.08em;
+}
+
+@keyframes not-found-gaming-text {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+body.not-found-page .header-month {
+  color: #f4f4f4;
+}
+
+body.not-found-page .not-found-home {
+  padding: 8px 0;
+  border: none;
+  border-bottom: 1.3px solid rgba(244, 244, 244, 0.65);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  transition: 0.3s;
+}
+
+body.not-found-page .not-found-home:hover {
+  opacity: 0.5;
+  transform: translateX(-4px);
+}
+
+body.not-found-page .not-found-home:focus,
+body.not-found-page .not-found-home:focus-visible {
+  outline: 1px solid #eee;
+  outline-offset: 3px;
+}
+
+body.not-found-page footer {
+  color: #f4f4f4;
+  border-top-color: #f4f4f4;
+}

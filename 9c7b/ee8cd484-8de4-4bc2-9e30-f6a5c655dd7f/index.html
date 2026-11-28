@@ -2,75 +2,140 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Sans", "Yu Gothic", sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #f8fafc;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .container {
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
-      margin-bottom: 2rem;
-    }
-
-    .line {
-      width: 80px;
-      height: 3px;
-      margin: 0 auto;
-      background: #38bdf8;
-      border-radius: 999px;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,noarchive,nofollow,noimageindex">
+  <title>Library / 沙羅双樹の花</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/bookshelf.css">
 </head>
 
 <body>
-  <main class="container">
-    <h1>Coming Soon</h1>
-    <p>
-      このサイトは現在準備中です。<br>
-      また後ほどお越しください。
-    </p>
-    <div class="line"></div>
+  <div id="bg"></div>
+
+  <header>
+    <h1>1/root書架</h1>
+
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="../../profile.html">Profile</a>
+      <details class="library-menu">
+        <summary>Library</summary>
+        <div class="submenu">
+          <a href="../index.html">沙羅双樹の花<span>荼毘ホー</span></a>
+          <a href="../../a1f3/index.html">すこしあかりて<span>常ホー、常闇夢</span></a>
+          <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
+        </div>
+      </details>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+  </header>
+
+
+  <main>
+    <section class="book">
+      <div class="book-layout">
+        <div class="slider">
+          <button class="arrow" id="prev">◀</button>
+          <div class="hyoushi">
+            <div class="slide-track" id="slideTrack">
+              <div class="slide"><img src="../image/Ashes/hyoushi.jpg" alt="表紙"></div>
+              <div class="slide"><img src="../image/Ashes/sample_1.jpg" alt="サンプル1"></div>
+              <div class="slide"><img src="../image/Ashes/sample_2.jpg" alt="サンプル2"></div>
+              <div class="slide"><img src="../image/Ashes/sample_3.jpg" alt="サンプル3"></div>
+            </div>
+          </div>
+          <button class="arrow" id="next">▶</button>
+          <p id="pageNumber">1 / 4</p>
+        </div>
+        <aside class="book-info" aria-label="作品紹介">
+          <h2 class="book-title book-title--timemachine book-title-r18">
+            遺灰と黙示録
+            <img src="../../image/R18_icon.png" alt="R18">
+          </h2>
+          <h3>あらすじ</h3>
+          <p class="book-synopsis">
+            ひとりの女の死、飛べない鳥、尽きない欲望。<br>
+            可哀そうは、可愛いらしい。<br>
+            荼毘は連合を裏切り、ホークスは社会を捨て、互いに体温を分け合い、すべてから逃げるように生きる。<br>
+            その先に幸福が無くとも、不幸も無いんだと信じて生きる。<br>
+            ふたりは同じ場所に辿り着くまで、何を願うのか。
+          </p>
+          <div class="chapter-list">
+            <ul>
+              <li>第一章「終末」</li>
+              <li>第二章「薄明」</li>
+              <li>第三章「遺言」</li>
+              <li>第四章「純真」<span>※R18、pixiv公開予定なし</span></li>
+              <li>第五章「恍惚」</li>
+            </ul>
+          </div>
+          <p>⚠️成人向け・死ネタ・精神的不調・独自解釈を含みます。</p><br>
+          <h3>初版</h3>
+          <p class="book-synopsis">
+            2027.1.10<br>
+          </p>
+          <h3></h3>
+          <a class="external-link" href="https://www.pixiv.net/novel/series/16160646" target="_blank" rel="noopener noreferrer">
+            <span class="external-link__text">pixivで読む</span>
+          </a>
+        </aside>
+      </div>
+      <div class="book-unlock" data-book-unlock data-answer="インスタントの味噌汁" data-hint="ヒント：○○○○○○○○○○なんかが二杯あれば" data-result-target="#unlockResult" data-success-delay="400">
+        <form data-unlock-form>
+          <span>Q. 荼毘が最後に望んだ暮らしを象徴するものは何か。<br>
+          &nbsp;&nbsp;本文中から10文字で抜き出してください。</span><br>
+
+          <span class="book-unlock-hint" data-unlock-hint></span><br>
+
+          <input class="book-unlock-answer" data-unlock-answer>
+          <button class="book-unlock-submit" type="submit">UNLOCK</button>
+        </form>
+      </div>
+
+      <div id="unlockResult" class="book-unlock-result" hidden>
+        <div class="book-result-images">
+          <button class="book-result-image" type="button" data-modal-text="text/not_afraid_to.html">
+            <img src="../image/Ashes/postcard_A-1.jpg" alt="not afraid to.">
+          </button>
+          <button
+            class="book-result-image"
+            type="button"
+            data-modal-text="text/happy_unhappy.html"
+            data-strikethrough="unhappy"
+          >
+            <img src="../image/Ashes/postcard_B-2.jpg" alt="happy unhappy">
+          </button>
+        </div>
+      </div>
+
+      <dialog id="textModal" class="text-modal" data-text-modal aria-labelledby="modalTitle">
+        <div class="text-modal-header">
+          <h3 id="modalTitle" data-modal-title></h3>
+        </div>
+        <div id="modalTextContent" class="modal-text-content" data-modal-content role="document" tabindex="0" aria-label="作品テキスト">読み込み中…</div>
+        <iframe id="modalText" title="作品テキスト" data-modal-frame sandbox="allow-scripts" hidden></iframe>
+        <div class="text-modal-footer">
+          <button id="closeTextModal" class="modal-close" data-modal-close type="button" autofocus>close</button>
+        </div>
+      </dialog>
+    </section>
+    <div class="book-return">
+      <a class="btn-back-minimal" href="../index.html">&nbsp;← BACK&nbsp;</a>
+    </div>
   </main>
 
+  <img
+    id="page-gif"
+    data-bubble-group="9c7b"
+    src="../image/little-dabiho-walk.GIF"
+    alt=""
+    aria-hidden="true"
+  >
   <footer>
-    © 2026 yourika
+    © 2026 yourika<br><a href="../../404.html?from=hidden" class="hidden-elements">Thank you for visiting</a>
   </footer>
+
+  <script src="../../js/bookshelf.js"></script>
+  <script src="../../js/common.js"></script>
 </body>
 </html>

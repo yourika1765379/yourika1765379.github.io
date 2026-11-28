@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="scrollbar-gutter-stable">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,noarchive,nofollow,noimageindex">
   <title>Home</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -11,7 +12,7 @@
   <div id="bg"></div>
 
   <header>
-    <h1>書架</h1>
+    <h1>1/root書架</h1>
 
     <nav>
       <a href="index.html">Home</a>
@@ -20,7 +21,7 @@
         <summary>Library</summary>
         <div class="submenu">
           <a href="9c7b/index.html">沙羅双樹の花<span>荼毘ホー</span></a>
-          <a href="#">すこしあかりて(閉鎖中)<span>常ホー、常闇夢</span></a>
+          <a href="a1f3/index.html">すこしあかりて<span>常ホー、常闇夢</span></a>
           <a href="#">いづれの御時に(閉鎖中)<span>アイナナ</span></a>
         </div>
       </details>
@@ -29,10 +30,39 @@
   </header>
 
   <main>
-    <div class="hero"></div>
+    <div class="hero">
+      <div class="hero-image">
+        <button class="hero-secret-trigger" type="button" tabindex="-1" aria-label="隠しメッセージを開く"></button>
+      </div>
+      <blockquote class="hero-quote" hidden>
+        <p id="heroQuote">可哀そうは、可愛いらしい。</p>
+        <cite id="heroQuoteSource">遺灰と黙示録</cite>
+      </blockquote>
+    </div>
+
+    <dialog id="secretModal" class="text-modal" aria-labelledby="secretModalTitle">
+      <div class="text-modal-header">
+        <h3 id="secretModalTitle">書きたいなぁとか思ってるやつ</h3>
+      </div>
+      <div id="secretModalContent" class="modal-text-content" role="document" tabindex="0" aria-label="隠しメッセージ">読み込み中…</div>
+      <iframe id="secretModalText" title="隠しメッセージ" sandbox="allow-scripts" hidden></iframe>
+      <div class="text-modal-footer">
+        <button id="closeSecretModal" class="modal-close" type="button">close</button>
+      </div>
+    </dialog>
+
+    <section>
+      <div class="section-content">
+        <p>
+          非公式二次創作サイトです。公式・関係者各位とは一切関係ありません。<br>
+          This is an unofficial fanwork site. Not affiliated with the original creators or copyright holders.
+        </p>
+      </div>
+    </section>
 
     <section>
       <h2>News</h2>
+
       <div class="update section-content">
         2026.12.28　サイト公開。やったー。
       </div>
@@ -40,9 +70,11 @@
   </main>
 
   <footer>
-    © 2026 yourika
+    © 2026 yourika<br>
+    <a href="404.html?from=hidden" class="hidden-elements">Thank you for visiting</a>
   </footer>
 
   <script src="js/common.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>

@@ -2,6 +2,56 @@
   box-sizing: border-box;
 }
 
+html.scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
+}
+
+@font-face {
+  font-family: "タイムマシンわ号";
+  src: url("../font/timemachine-wa.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "アプリ明朝";
+  src: url("../font/アプリ明朝.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "赤薔薇シンデレラ";
+  src: url("../font/akabara-cinderella.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "なごみ極細ゴシック";
+  src: url("../font/NagomiGokubosoGothic-ExtraLight.otf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ワープロ明朝";
+  src: url("../font/wapuro-mincho.otf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KazukiReiwa Regular";
+  src: url("../font/KazukiReiwa - Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KazukiReiwa Light";
+  src: url("../font/KazukiReiwa - Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
   font-family:
@@ -21,18 +71,37 @@ body {
     linear-gradient(#e2e2e2 1px, transparent 1px),
     linear-gradient(90deg, #d0d0d0 1px, transparent 1px);
   background-size: 30px 30px;
+  background-color: #f9f9f9;
 }
 
 header {
+  position: relative;
   width: min(900px, 90%);
   margin: 40px auto 0;
 }
 
+.header-title-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.header-month {
+  margin: 0 0 -14px auto;
+  font-family: "アプリ明朝", serif;
+  font-size: 0.9rem;
+  line-height: 34px;
+  white-space: nowrap;
+  color: #777;
+}
+
 h1 {
   margin: 0;
+  font-family: "アプリ明朝", serif;
   font-size: 34px;
   font-weight: normal;
   letter-spacing: 0.2em;
+  line-height: 34px;
 }
 
 nav {
@@ -106,8 +175,71 @@ main {
 
 .hero {
   width: 100%;
+}
+
+.hero-image {
+  position: relative;
+  width: 100%;
   aspect-ratio: 3 / 1;
-  background: url("../images/home-B.jpg") center/cover no-repeat;
+  background: url("../image/home-B.jpg") center/cover no-repeat;
+}
+
+.hero-secret-trigger {
+  position: absolute;
+  top: 20.4%;
+  left: 64.2%;
+  width: clamp(24px, 4%, 44px);
+  height: clamp(24px, 8%, 44px);
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 0;
+  outline: none;
+  background: transparent;
+  cursor: default;
+}
+
+body.keyboard-navigation .hero-secret-trigger:focus,
+.hero-secret-trigger:focus-visible {
+  outline: none;
+}
+
+.hero-quote {
+  position: relative;
+  width: fit-content;
+  max-width: min(500px, 60%);
+  margin: -30px -21px 0 auto;
+  padding: 2.2em 1.8em 1.3em 2.8em;
+  color: #333;
+  background-color: #e5f1f299;
+  font-size: 0.85rem;
+}
+
+.hero-quote::before {
+  display: inline-block;
+  position: absolute;
+  top: 0.6em;
+  left: 1.1em;
+  width: 1.5em;
+  height: 1.5em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z' fill='%232aa8ba'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  content: "";
+}
+
+.hero-quote p {
+  margin-top: 0;
+  font-family: "アプリ明朝", serif;
+  font-size: 1.1em;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.hero-quote cite {
+  display: block;
+  color: #737373;
+  font-size: 0.7em;
+  font-style: normal;
+  text-align: right;
 }
 
 section {
@@ -128,6 +260,44 @@ h2 {
 
 section p {
   line-height: 2;
+  font-size: 0.9rem;
+}
+
+.not-found {
+  text-align: center;
+}
+
+.not-found-code {
+  margin: 0;
+  font-family: "赤薔薇シンデレラ", serif;
+  font-size: clamp(4rem, 12vw, 7rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: #aaa;
+}
+
+.not-found-code + span {
+  font-family: "赤薔薇シンデレラ", serif;
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  color: #aaa;
+}
+
+.not-found h2 {
+  margin: 24px 0 10px;
+  font-size: 1.2rem;
+}
+
+.not-found-home {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+}
+
+.not-found-home:hover {
+  background: #555;
 }
 
 .update {
@@ -172,6 +342,218 @@ dd {
   height: 100%;
 }
 
+body.modal-open {
+  position: fixed;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.text-modal {
+  width: min(760px, calc(100vw - 32px));
+  max-width: 760px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.text-modal,
+.modal-text-content {
+  scrollbar-width: none;
+}
+
+.text-modal::-webkit-scrollbar,
+.modal-text-content::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-scrollbar-indicator {
+  position: fixed;
+  z-index: 1;
+  width: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-scrollbar-indicator.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  left: 2px;
+  min-height: 24px;
+  border-radius: 4px;
+  background: #999;
+  cursor: grab;
+  touch-action: none;
+}
+
+.modal-scrollbar-thumb:active {
+  cursor: grabbing;
+}
+
+.text-modal::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.text-modal-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+#secretModal .text-modal-header {
+  margin-bottom: 4px;
+}
+
+.text-modal h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.text-modal h3 del {
+  text-decoration-style: double;
+}
+
+.text-modal-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.modal-close {
+  padding: 8px 16px;
+  border: 0;
+  background: transparent;
+  color: #555;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: transparent;
+  color: #333;
+}
+
+.modal-close:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-decoration-color: #aaa;
+}
+
+.modal-text-content {
+  width: 100%;
+  height: auto;
+  max-height: min(65vh, 560px);
+  padding: 1em 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  white-space: pre-wrap;
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  line-height: 1.8;
+}
+
+.secret-info-group {
+  margin-top: 1.5em;
+}
+
+.secret-info-group + .secret-info-group {
+  padding-top: 0.75em;
+  border-top: 1px solid #ddd;
+}
+
+.secret-info-group h4 {
+  margin: 0 0 0.6em;
+  color: inherit;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+#secretModalContent {
+  padding-top: 0;
+}
+
+.secret-info-intro {
+  margin: 0 0 1.5em;
+  text-align: center;
+}
+
+.secret-info-list {
+  display: block;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.secret-info-list dt {
+  color: inherit;
+  text-align: left;
+  font-weight: 600;
+}
+
+.secret-info-list dd {
+  margin: 0 0 1em 1em;
+}
+
+#modalText {
+  display: none;
+}
+
+@media (min-width: 601px) {
+  .text-modal {
+    width: min(600px, calc(100vw - 32px));
+    max-width: 600px;
+    padding: 18px;
+  }
+
+  .modal-text-content {
+    height: auto;
+    max-height: min(60vh, 420px);
+  }
+}
+
+.favorite-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.favorite-list li {
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+.favorite-list li::before {
+  content: "❤";
+  margin-right: 0.8em;
+  color: #3bb9cb;
+  font-size: 0.9em;
+}
+
+/* iPadとか */
+@media (max-width: 900px){
+  .header-month {
+    display: none;
+  }
+}
+
+/* スマホ */
+@media (max-width: 600px) {
+}
+
 .profile-text {
   line-height: 2;
 }
@@ -199,6 +581,63 @@ dd {
   display: block;
 }
 
+.internal-link a {
+  display: inline;
+  padding: 2px 7px;
+  margin-left: 2px;
+  color: #2aa8ba;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+
+.internal-link a:hover {
+  color: #3bb9cb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.external-link {
+  color: #2aa8ba;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  font-size: 16px;
+  line-height: 1.8;
+  text-decoration: none !important;
+
+  transition: opacity 0.25s ease;
+}
+
+.external-link__text {
+  text-decoration: underline;
+  text-decoration-color: #2aa8ba;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+.external-link::after {
+  content: "↗";
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 17px;
+  height: 17px;
+
+  color: #2aa8ba;
+  font-size: 12px;
+  line-height: 1;
+
+  border: 1px solid #2aa8ba;
+  border-radius: 2px;
+}
+
+.external-link:hover {
+  opacity: 0.65;
+}
+
 footer {
   width: min(900px, 90%);
   margin: 80px auto 30px;
@@ -209,55 +648,75 @@ footer {
   text-align: center;
 }
 
+.hidden-elements {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+  background: none;
+  border: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 @media (max-width: 600px) {
+  .hero-image {
+    aspect-ratio: 2 / 1;
+  }
+
+  .hero-secret-trigger {
+    left: 71.3%;
+  }
+
+  .hero-quote {
+    margin-right: -10px;
+    max-width: 78%;
+    font-size: 0.7rem;
+  }
+
   .profile {
     flex-direction: column;
     text-align: center;
   }
 }
 
-body.coming {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Hiragino Sans", "Yu Gothic", sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: #f8fafc;
+.gif-bubble {
+  font-family: "ワープロ明朝", serif;
+  position: absolute;
+  z-index: 1000;
+  max-width: 80vw;
+  padding: 6px 12px;
+  background: #fff176;
+  color: #164653;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
 }
 
-body.coming .container {
-  padding: 2rem;
+.gif-bubble::after {
+  content: "";
+
+  position: absolute;
+  top: calc(100% - 1px);
+  left: var(--tail-x, 50%);
+  transform: translateX(-50%);
+
+  width: 7px;
+  height: 7px;
+  border-top: 7px solid #fff176;
+  border-right: 7px solid #fff176;
 }
 
-body.coming h1 {
-  font-size: clamp(3rem, 8vw, 5rem);
-  letter-spacing: 0.08em;
-  margin-bottom: 1rem;
+.gif-bubble.is-below {
+  transform: translateX(-50%);
 }
 
-body.coming p {
-  font-size: 1.1rem;
-  color: #cbd5e1;
-  margin-bottom: 2rem;
-}
-
-body.coming .line {
-  width: 80px;
-  height: 3px;
-  margin: 0 auto;
-  background: #38bdf8;
-  border-radius: 999px;
-}
-
-body.coming footer {
-  position: fixed;
-  bottom: 20px;
-  width: 100%;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #94a3b8;
+.gif-bubble.is-below::after {
+  top: auto;
+  bottom: calc(100% - 1px);
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 7px solid #fff176;
+  border-left: 7px solid #fff176;
 }
